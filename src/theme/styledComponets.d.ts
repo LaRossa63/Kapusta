@@ -2,6 +2,14 @@ import 'styled-components';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
+    ellipse: string;
+
+    device: {
+      mobile: string;
+      tab: string;
+      desktop: string;
+    };
+
     colors: {
       main: string;
     };

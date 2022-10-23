@@ -1,6 +1,14 @@
 import { DefaultTheme } from 'styled-components';
 
 export const theme: DefaultTheme = {
+  ellipse: '#fb7c2f',
+
+  device: {
+    mobile: '320px',
+    tab: '768px',
+    desktop: '1280px',
+  },
+
   colors: {
     main: '#000',
   },
@@ -19,8 +27,7 @@ export const theme: DefaultTheme = {
   },
 
   background: {
-    body: '#E5E5E5',
-
+    body: '#FFF',
     header: '#FFF',
   },
 };
