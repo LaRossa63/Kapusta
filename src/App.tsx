@@ -1,5 +1,13 @@
 import React from 'react';
+import { AppRouter } from 'routes';
+import { AppProvider } from 'provider';
 
 export const App = () => {
-  return <div>Hello World</div>;
+  return (
+    <>
+      <AppProvider>
+        <AppRouter />
+      </AppProvider>
+    </>
+  );
 };
