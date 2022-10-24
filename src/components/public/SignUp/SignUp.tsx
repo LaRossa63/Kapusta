@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Form } from './components/Form';
 import { KapustaSecondaryBackground } from 'images';
-import { SecondaryText } from '../Elements';
+import { SecondaryText } from 'components/Elements';
 
 const Container = styled.div`
   position: absolute;

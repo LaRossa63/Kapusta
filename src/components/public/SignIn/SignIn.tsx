@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Form } from './components/Form';
 import { GoogleLink, KapustaSecondaryBackground } from 'images';
-import { Button, SecondaryText } from '../Elements';
+import { Button, SecondaryText } from 'components/Elements';
 
 const Container = styled.div`
   position: absolute;
