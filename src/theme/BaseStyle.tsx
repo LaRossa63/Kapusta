@@ -8,12 +8,11 @@ interface Props {
 const ResetStyle = createGlobalStyle`
 
   * {
-    font-family: ${(props) => props.theme.fontSize.fontFamily};
-    font-style: ${(props) => props.theme.fontSize.fontStyle};
-    font-weight: ${(props) => props.theme.fontSize.fontWeight};
-    font-size: ${(props) => props.theme.fontSize.fontSize};
-    line-height: ${(props) => props.theme.fontSize.lineHeight};
-    letter-spacing: ${(props) => props.theme.fontSize.letterSpacing};
+    font-family: ${(props) => props.theme.font.fontFamily}, sans-serif;
+    font-style: ${(props) => props.theme.font.fontStyle};
+    font-weight: ${(props) => props.theme.font.fontWeight};
+    line-height: ${(props) => props.theme.font.lineHeight};
+    letter-spacing: ${(props) => props.theme.font.letterSpacing};
   }
 
   body {

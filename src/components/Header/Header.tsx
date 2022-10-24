@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
+import { Logo } from 'images/Logo';
+
 const Container = styled.div`
   width: 100%;
   height: 56px;
@@ -13,15 +15,6 @@ const Container = styled.div`
   background-color: ${(props) => props.theme.background.header};
 `;
 
-const Title = styled.h2`
-  font-size: 26px;
-  font-weight: bolder;
-
-  z-index: 10;
-
-  color: ${(props) => props.theme.fontSize.main};
-`;
-
 const Ellipse = styled.div<{ primary?: boolean }>`
   width: 35px;
   height: 26px;
@@ -29,7 +22,7 @@ const Ellipse = styled.div<{ primary?: boolean }>`
   position: absolute;
   left: 40px;
 
-  background-color: ${(props) => props.theme.ellipse};
+  background-color: ${(props) => props.theme.ellipse.main};
   border-radius: 8px;
 
   ${(props) =>
@@ -38,14 +31,14 @@ const Ellipse = styled.div<{ primary?: boolean }>`
       top: 10px;
       left: 30px;
 
-      background: rgba(251, 124, 47, 0.2);
+      background-color: ${(props) => props.theme.ellipse.primary};
     `}
 `;
 
 export const Header = () => {
   return (
     <Container>
-      <Title>Kapusta</Title>
+      <Logo style={{ width: '70px', height: '17px', zIndex: 10 }} />
       <Ellipse />
       <Ellipse primary />
     </Container>

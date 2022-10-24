@@ -2,7 +2,10 @@ import 'styled-components';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    ellipse: string;
+    ellipse: {
+      main: string;
+      primary: string;
+    };
 
     device: {
       mobile: string;
@@ -10,19 +13,25 @@ declare module 'styled-components' {
       desktop: string;
     };
 
-    colors: {
-      main: string;
-    };
+    font: {
+      color: {
+        main: string;
+        secondary: string;
+        selected: string;
+      };
 
-    fontSize: {
-      main: string;
-      secondary: string;
-      selected: string;
+      size: {
+        small: string;
+
+        normal: string;
+        normalBig: string;
+
+        large: string;
+      };
 
       fontFamily: string;
       fontStyle: string;
       fontWeight: string;
-      fontSize: string;
       lineHeight: string;
       letterSpacing: string;
     };
@@ -31,6 +40,25 @@ declare module 'styled-components' {
       body: string;
 
       header: string;
+      banner: string;
+      signIn: string;
+
+      button: {
+        main: string;
+        active: string;
+        activeText: string;
+      };
+
+      input: {
+        main: string;
+        selected: string;
+
+        text: string;
+      };
+    };
+
+    controller: {
+      selected: string;
     };
   }
 }

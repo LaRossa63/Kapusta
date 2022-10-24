@@ -1,35 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { KapustaBackground } from 'images/KapustaBackground';
+import { Logo } from 'images/Logo';
+
 const Container = styled.div`
   width: 100%;
   height: 342px;
 
+  position: relative;
+  overflow: hidden;
+
+  background-color: ${(props) => props.theme.background.banner};
+  border-bottom-left-radius: 80px;
+
   @media (min-width: ${(props) => props.theme.device.tab}) {
     height: 582px;
   }
+`;
 
-  background: url('./images/Banner/kapusta.png') no-repeat,
-    url('./images/Banner/kapusta.png') no-repeat,
-    url('./images/Banner/kapusta.png') no-repeat,
-    url('./images/Banner/kapusta.png') no-repeat,
-    url('./images/Banner/kapusta.png') no-repeat,
-    url('./images/Banner/kapusta.png') no-repeat,
-    url('./images/Banner/kapusta.png') no-repeat,
-    url('./images/Banner/kapusta.png') no-repeat,
-    url('./images/Banner/kapusta.png') no-repeat,
-    url('./images/Banner/kapusta.png') no-repeat,
-    url('./images/Banner/kapusta.png') no-repeat,
-    url('./images/Banner/kapusta.png') no-repeat,
-    url('./images/Banner/kapusta.png') no-repeat,
-    url('./images/Banner/kapusta.png') no-repeat;
+const KapustaBackgroundStyled = styled(KapustaBackground)`
+  min-width: 1270px;
+  height: 232px;
 
-  background-position: 10px 90px, 140px 28px, 152px 177px, 259px 91px,
-    390px 28px, 508px 91px, 638px 28px, 757px 91px, 887px 28px, 1006px 91px,
-    1136px 28px, 1128px 165px, 1255px 91px;
+  margin-top: 30px;
 
-  background-color: #f5f6fb;
-  border-bottom-left-radius: 80px;
+  position: absolute;
+  z-index: 1;
 `;
 
 const Content = styled.div`
@@ -40,8 +37,7 @@ const Content = styled.div`
   align-items: center;
   flex-direction: column;
 
-  gap: 25px;
-
+  gap: 5px;
   padding: 86px 0 0 20px;
 
   @media (min-width: ${(props) => props.theme.device.tab}) {
@@ -53,28 +49,44 @@ const Content = styled.div`
   }
 `;
 
-const Title = styled.h3`
-  font-size: 50px;
-  font-weight: bold;
+const KapustaLogoStyled = styled(Logo)`
+  z-index: 2;
 
-  color: ${(props) => props.theme.fontSize.main};
+  @media (min-width: ${(props) => props.theme.device.tab}) {
+    width: 307px;
+    height: 77px;
+  }
+
+  @media (min-width: ${(props) => props.theme.device.desktop}) {
+    width: 377px;
+    height: 120px;
+  }
 `;
 
 const SecondaryText = styled.p`
   font-weight: 700;
-  font-size: 15px;
-  line-height: 15px;
-
+  line-height: 19px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 
-  color: ${(props) => props.theme.fontSize.secondary};
+  z-index: 2;
+
+  color: ${(props) => props.theme.font.color.secondary};
+
+  @media (min-width: ${(props) => props.theme.device.tab}) {
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.18em;
+  }
 `;
 
 export const Banner = () => {
   return (
     <Container>
+      <KapustaBackgroundStyled />
+
       <Content>
-        <Title>Kapusta</Title>
+        <KapustaLogoStyled />
         <SecondaryText>Smart Finance</SecondaryText>
       </Content>
     </Container>
