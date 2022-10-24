@@ -1,20 +1,23 @@
-import { Route, Routes } from 'react-router-dom';
+import { useState } from 'react';
+import { Navigate, useRoutes } from 'react-router-dom';
 
-import { AppLayout } from 'Layout';
-import { SignIn, SignUp } from 'components';
 import { AppRoutes } from 'types/types';
+import { ProtectedRoutes } from './protectedRoutes';
+import { PublicRoutes } from './publicRoutes';
 
 export const AppRouter = () => {
-  return (
-    <>
-      <Routes>
-        <Route path={AppRoutes.HOME} element={<AppLayout />}>
-          <Route index element={<h1>Home</h1>} />
+  const [isAuth, setIsAuth] = useState(false);
 
-          <Route path={AppRoutes.SIGNIN} element={<SignIn />} />
-          <Route path={AppRoutes.SIGNUP} element={<SignUp />} />
-        </Route>
-      </Routes>
-    </>
-  );
+  const commonRoutes = [
+    {
+      path: '*',
+      element: <Navigate to={isAuth ? AppRoutes.HOME : AppRoutes.SIGNIN} />,
+    },
+  ];
+
+  const routes = isAuth ? ProtectedRoutes : PublicRoutes;
+
+  const element = useRoutes([...routes, ...commonRoutes]);
+
+  return <>{element}</>;
 };

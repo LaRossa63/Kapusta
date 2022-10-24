@@ -1,13 +1,11 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { Banner, Header } from 'components';
-
-export const AppLayout = () => {
+export const ProtectedLayout = () => {
   return (
     <>
-      <Header />
-      <Banner />
+      <h1>Header</h1>
+      <h1>Banner</h1>
 
       <Outlet />
     </>

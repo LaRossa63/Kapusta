@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Form } from './components/Form';
-import { SecondaryText } from 'components/Elements';
-import { KapustaSecondaryBackground } from 'images';
+import { GoogleLink, KapustaSecondaryBackground } from 'images';
+import { Button, SecondaryText } from '../Elements';
 
 const Container = styled.div`
   position: absolute;
@@ -30,7 +30,7 @@ const Background = styled.div`
   height: 100%;
 
   max-width: 426px;
-  max-height: 666px;
+  max-height: 552px;
 
   z-index: 11;
   padding: 40px 20px;
@@ -46,12 +46,32 @@ const Background = styled.div`
 `;
 
 const SecondaryTextStyled = styled(SecondaryText)`
-  font-size: ${(props) => props.theme.font.size.normal};
+  font-size: ${(props) => props.theme.font.size.small};
   line-height: 12px;
 
   @media (min-width: ${(props) => props.theme.device.tab}) {
     font-size: ${(props) => props.theme.font.size.normal};
     line-height: 14px;
+  }
+`;
+
+const ButtonStyled = styled(Button)`
+  &.MuiButtonBase-root {
+    font-size: ${(props) => props.theme.font.size.normalBig};
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0.02em;
+    text-transform: none;
+
+    margin-top: 20px;
+    margin-left: 50%;
+    padding: 10px 20px;
+
+    transform: translateX(-50%);
+
+    color: ${(props) => props.theme.font.color.main};
+    background-color: ${(props) => props.theme.background.button.main};
+    border-radius: 26px;
   }
 `;
 
@@ -65,12 +85,21 @@ const KapustaBackground = styled(KapustaSecondaryBackground)`
   left: -50px;
 `;
 
-export const SignUp = () => {
+export const SignIn = () => {
   return (
     <Container>
       <Background>
         <SecondaryTextStyled textAlign="center">
-          Для регистрации заполните форму
+          Вы можете авторизоваться с помощью Google Account:
+        </SecondaryTextStyled>
+
+        <ButtonStyled startIcon={<GoogleLink style={{ minWidth: '18px' }} />}>
+          Google
+        </ButtonStyled>
+
+        <SecondaryTextStyled margin="30px 0 0 0">
+          Или зайти с помощью e-mail и пароля, предварительно
+          зарегистрировавшись:
         </SecondaryTextStyled>
 
         <Form />

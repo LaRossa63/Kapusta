@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-import { Button } from 'components/Elements';
 import { AppRoutes } from 'types/types';
+import { Button } from 'components/public/Elements';
 
 const MyForm = styled.form`
   display: flex;
