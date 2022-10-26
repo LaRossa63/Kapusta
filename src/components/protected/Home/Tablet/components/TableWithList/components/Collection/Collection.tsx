@@ -3,18 +3,28 @@ import styled, { css } from 'styled-components';
 
 const Container = styled.div`
   width: 100%;
-  height: fit-content;
+  /* height: fit-content; */
 
   margin-bottom: 60px;
+
+  @media (min-width: ${(props) => props.theme.device.desktop}) {
+    width: fit-content;
+
+    margin: 0;
+    margin-left: 75px;
+  }
 `;
 
 const Content = styled.div`
   width: 230px;
-  height: 278px;
 
   margin-top: 40px;
 
   text-transform: uppercase;
+
+  @media (min-width: ${(props) => props.theme.device.desktop}) {
+    margin: 0;
+  }
 `;
 
 const HeaderItem = styled.div`
@@ -32,6 +42,10 @@ const HeaderItem = styled.div`
   border-bottom: 2px solid #ffffff;
   border-radius: 16px 16px 0 0;
   color: #000000;
+
+  @media (min-width: ${(props) => props.theme.device.desktop}) {
+    border-bottom: 4px solid #ffffff;
+  }
 `;
 
 const MainItem = styled.div<{ last?: boolean }>`

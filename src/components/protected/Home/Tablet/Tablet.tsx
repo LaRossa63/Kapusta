@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { KapustaSecondaryBackground } from 'images';
 import { TopPanel, TableWithList } from './components';
 import { Collection } from './components/TableWithList/components';
+import { useGetDevice } from 'hooks';
 
 const Container = styled.div`
   width: 100%;
@@ -22,6 +23,10 @@ const Content = styled.div`
   position: relative;
 
   margin: 0 auto;
+
+  @media (min-width: ${(props) => props.theme.device.desktop}) {
+    max-width: 1098px;
+  }
 `;
 
 const KapustaBackgroundStyled = styled(KapustaSecondaryBackground)`
@@ -35,14 +40,20 @@ const KapustaBackgroundStyled = styled(KapustaSecondaryBackground)`
 `;
 
 export const Tablet = () => {
+  const { isTablet } = useGetDevice();
+
   return (
     <Container>
       <Content>
         <TopPanel />
         <TableWithList />
 
-        <Collection />
-        <KapustaBackgroundStyled />
+        {isTablet && (
+          <>
+            <Collection />
+            <KapustaBackgroundStyled />
+          </>
+        )}
       </Content>
     </Container>
   );

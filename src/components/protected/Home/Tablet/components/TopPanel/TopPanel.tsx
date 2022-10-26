@@ -10,6 +10,12 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  margin-left: 20px;
+
+  @media (min-width: ${(props) => props.theme.device.desktop}) {
+    margin-left: 285px;
+  }
 `;
 
 const ContainerController = styled.div`

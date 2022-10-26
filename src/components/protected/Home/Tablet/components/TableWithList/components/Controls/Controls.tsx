@@ -8,6 +8,10 @@ import { SelectList, Calendar as TestCal, Button } from 'components/Elements';
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
+
+  @media (min-width: ${(props) => props.theme.device.desktop}) {
+    flex-wrap: nowrap;
+  }
 `;
 
 const Calendar = styled.div`
@@ -37,6 +41,10 @@ const Inputs = styled.div`
 
   border: 2px solid ${(props) => props.theme.controller.input.border.active};
   border-radius: 16px 16px 16px 0px;
+
+  @media (min-width: ${(props) => props.theme.device.desktop}) {
+    width: 578px;
+  }
 `;
 
 const Description = styled.input`
@@ -89,6 +97,13 @@ const Buttons = styled.div`
   margin-top: 32px;
   margin-left: 50%;
   transform: translateX(-50%);
+
+  @media (min-width: ${(props) => props.theme.device.desktop}) {
+    margin: 0;
+    margin-left: 32px;
+
+    transform: none;
+  }
 `;
 
 const ButtonStyled = styled(Button)`

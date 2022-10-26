@@ -4,6 +4,12 @@
   top: 302px !important;
 }
 
+@media (min-width: 1280px) {
+  .MuiPaper-root {
+    top: 270px !important;
+  }
+}
+
 .MuiInputBase-root {
   font-size: 12px !important;
 

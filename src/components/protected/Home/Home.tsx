@@ -4,7 +4,7 @@ import { useGetDevice } from 'hooks';
 import { Tablet } from './Tablet';
 
 export const Home = () => {
-  const { isDesktop, isTablet, isMobile } = useGetDevice();
+  const { isDesktop, isTablet, isMobile, isTabAndDesktop } = useGetDevice();
 
-  return <>{isTablet && <Tablet />}</>;
+  return <>{isTabAndDesktop && <Tablet />}</>;
 };
