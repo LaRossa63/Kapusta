@@ -1,0 +1,54 @@
+.MuiPaper-root {
+  box-shadow: none !important;
+
+  top: 302px !important;
+}
+
+.MuiInputBase-root {
+  font-size: 12px !important;
+
+  color: #c7ccdc !important;
+
+  width: 186px !important;
+  height: 44px !important;
+
+  border: none !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border: 2px solid #f5f6fb !important;
+  padding: 10px 0 0 20px;
+}
+
+.MuiList-root {
+  padding: 0 !important;
+
+  background-color: #ffffff !important;
+  border: 2px solid #f5f6fb !important;
+  box-shadow: 0px 3px 4px rgba(170, 178, 197, 0.4) !important;
+}
+
+.MuiMenuItem-root {
+  height: 32px !important;
+
+  background-color: #ffffff !important;
+
+  font-size: 12px !important;
+  letter-spacing: 0.02em !important;
+
+  color: #c7ccdc !important;
+}
+
+.Mui-selected {
+  font-size: 12px !important;
+  letter-spacing: 0.02em !important;
+
+  color: #52555f !important;
+
+  background-color: #f5f6fb !important;
+  box-shadow: 0px 3px 4px rgba(170, 178, 197, 0.4) !important;
+}
+
+.MuiSvgIcon-root {
+  color: #c7ccdc !important;
+}

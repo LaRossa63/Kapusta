@@ -3,7 +3,7 @@ import React, { FC, SVGProps } from 'react';
 export const ExitIcon: FC<SVGProps<SVGSVGElement>> = (props) => {
   return (
     <>
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" {...props}>
         <g clipPath="url(#clip0_19406_1192)">
           <path
             d="M9.99998 14H1.99998V1.99998H9.99998V2.99998H12V0H0V16H12V13H10V14H9.99998Z"

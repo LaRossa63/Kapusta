@@ -37,7 +37,7 @@ const SecondaryTextStyled = styled(SecondaryText)<{
     `}
 `;
 
-export const TabDesktop = () => {
+export const TabletDesktop = () => {
   return (
     <Container>
       <Avatar name="M" margin="0 16px 0 0" />

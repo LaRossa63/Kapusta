@@ -1,5 +1,10 @@
 import React from 'react';
 
+import { useGetDevice } from 'hooks';
+import { Tablet } from './Tablet';
+
 export const Home = () => {
-  return <div>Home</div>;
+  const { isDesktop, isTablet, isMobile } = useGetDevice();
+
+  return <>{isTablet && <Tablet />}</>;
 };

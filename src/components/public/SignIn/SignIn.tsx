@@ -70,7 +70,9 @@ const ButtonStyled = styled(Button)`
     transform: translateX(-50%);
 
     color: ${(props) => props.theme.font.color.main};
-    background-color: ${(props) => props.theme.background.button.main};
+
+    background-color: ${(props) =>
+      props.theme.controller.button.background.main};
     border-radius: 26px;
   }
 `;

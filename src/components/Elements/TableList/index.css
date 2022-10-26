@@ -1,0 +1,24 @@
+.Scroll {
+  overflow-y: scroll;
+}
+
+.Scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 200px;
+
+  margin-top: 10px;
+
+  background-color: #f5f6fb;
+  border-radius: 5px;
+}
+
+.Scroll::-webkit-scrollbar-track {
+  padding-top: 10px;
+}
+
+.Scroll::-webkit-scrollbar-thumb {
+  background: #ff751d;
+  border-radius: 2px;
+
+  width: 6px;
+}

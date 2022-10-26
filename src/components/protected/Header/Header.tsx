@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 import { useGetDevice } from 'hooks';
 import { Logo } from 'images/Logo';
-import { Mobile, TabDesktop } from './components';
+import { Mobile, TabletDesktop } from './components';
 
 const Container = styled.div`
   width: 100%;
@@ -56,7 +56,7 @@ export const Header = () => {
 
       {isMobile && <Mobile />}
 
-      {isTabAndDesktop && <TabDesktop />}
+      {isTabAndDesktop && <TabletDesktop />}
     </Container>
   );
 };

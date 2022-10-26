@@ -38,13 +38,14 @@ const Input = styled.input`
 
   padding-left: 19px;
 
-  background-color: ${(props) => props.theme.background.input.main};
+  background-color: ${(props) => props.theme.controller.input.background.main};
   border-radius: 30px;
 
   color: #a6abb9;
 
   &:focus {
-    border-bottom: 1px solid ${(props) => props.theme.background.input.selected};
+    border-bottom: 1px solid
+      ${(props) => props.theme.controller.input.border.selected};
   }
 `;
 
@@ -66,14 +67,17 @@ const ButtonStyled = styled(Button)`
     padding: 12px 25px;
 
     color: ${(props) => props.theme.font.color.main};
-    background-color: ${(props) => props.theme.background.button.main};
+    background-color: ${(props) =>
+      props.theme.controller.button.background.main};
 
     border-radius: 16px;
 
     &:active,
     &:hover {
-      color: ${(props) => props.theme.background.button.activeText};
-      background-color: ${(props) => props.theme.background.button.active};
+      color: ${(props) => props.theme.controller.button.color.selected};
+
+      background-color: ${(props) =>
+        props.theme.controller.button.background.selected};
     }
   }
 `;

@@ -15,6 +15,7 @@ export const theme: DefaultTheme = {
   font: {
     color: {
       main: '#000',
+      secondaryMain: 'rgba(82, 85, 95, 0.7)',
       secondary: '#52555F',
       selected: '#FFF',
     },
@@ -41,22 +42,55 @@ export const theme: DefaultTheme = {
     header: '#FFF',
     banner: '#f5f6fb',
     signIn: '#FFF',
-
-    button: {
-      main: '#F5F6FB',
-      active: '#FF751D',
-      activeText: '#FFF',
-    },
-
-    input: {
-      main: '#F6F7FB',
-      selected: '#FF751D',
-
-      text: '#A6ABB9',
-    },
+    table: '#FFF',
   },
 
   controller: {
-    selected: ' #FF751D',
+    input: {
+      color: {
+        main: '#F6F7FB',
+        selected: '',
+        active: '',
+        secondary: '#c7ccdc',
+      },
+
+      background: {
+        main: '#F5F6FB',
+        selected: '',
+        active: '',
+        secondary: '',
+      },
+
+      border: {
+        main: '#F6F7FB',
+        selected: '#FF751D',
+        active: '#F5F6FB',
+        secondary: '#FFF',
+      },
+    },
+
+    button: {
+      color: {
+        main: '',
+        selected: '#FFF',
+        selectedSecondary: '#FF751D',
+        active: '#FF751D',
+        secondary: '#000',
+      },
+
+      background: {
+        main: '#F5F6FB',
+        selected: '#FF751D',
+        active: '',
+        secondary: '',
+      },
+
+      border: {
+        main: '',
+        selected: '',
+        active: '',
+        secondary: '#f6f7fc',
+      },
+    },
   },
 };

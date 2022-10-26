@@ -16,6 +16,7 @@ declare module 'styled-components' {
     font: {
       color: {
         main: string;
+        secondaryMain: string;
         secondary: string;
         selected: string;
       };
@@ -42,23 +43,56 @@ declare module 'styled-components' {
       header: string;
       banner: string;
       signIn: string;
-
-      button: {
-        main: string;
-        active: string;
-        activeText: string;
-      };
-
-      input: {
-        main: string;
-        selected: string;
-
-        text: string;
-      };
+      table: string;
     };
 
     controller: {
-      selected: string;
+      input: {
+        color: {
+          main: string;
+          selected: string;
+          active: string;
+          secondary: string;
+        };
+
+        background: {
+          main: string;
+          selected: string;
+          active: string;
+          secondary: string;
+        };
+
+        border: {
+          main: string;
+          selected: string;
+          active: string;
+          secondary: string;
+        };
+      };
+
+      button: {
+        color: {
+          main: string;
+          selected: string;
+          selectedSecondary: string;
+          active: string;
+          secondary: string;
+        };
+
+        background: {
+          main: string;
+          selected: string;
+          active: string;
+          secondary: string;
+        };
+
+        border: {
+          main: string;
+          selected: string;
+          active: string;
+          secondary: string;
+        };
+      };
     };
   }
 }

@@ -3,3 +3,7 @@ export * from './KapustaBackground';
 export * from './KapustaSecondaryBackground';
 export * from './Logo';
 export * from './ExitIcon';
+export * from './GraphIcon';
+export * from './CalendarIcon';
+export * from './CalculatorIcon';
+export * from './DeleteIcon';
