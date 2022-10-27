@@ -3,7 +3,14 @@ import React, { FC, SVGProps } from 'react';
 export const Logo: FC<SVGProps<SVGSVGElement>> = (props) => {
   return (
     <>
-      <svg width="183" height="47" viewBox="0 0 183 47" fill="none" {...props}>
+      <svg
+        width="183"
+        height="47"
+        viewBox="0 0 183 47"
+        fill="none"
+        cursor="pointer"
+        {...props}
+      >
         <path
           fillRule="evenodd"
           clipRule="evenodd"

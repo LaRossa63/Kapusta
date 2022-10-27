@@ -12,7 +12,7 @@ const Container = styled.div`
   overflow: hidden;
 
   background-color: ${(props) => props.theme.background.banner};
-  border-bottom-left-radius: 80px;
+  border-bottom-left-radius: 200px;
 
   @media (min-width: ${(props) => props.theme.device.tab}) {
     height: 582px;

@@ -7,3 +7,6 @@ export * from './GraphIcon';
 export * from './CalendarIcon';
 export * from './CalculatorIcon';
 export * from './DeleteIcon';
+export * from './ArrowBackIcon';
+export * from './SliderLeftIcon';
+export * from './SliderRightIcon';
