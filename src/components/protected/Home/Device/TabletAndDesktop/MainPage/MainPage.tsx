@@ -10,8 +10,9 @@ const Container = styled.div`
   width: 100%;
   height: auto;
 
-  position: absolute;
-  top: 90px;
+  z-index: 100;
+
+  margin-top: 40px;
 `;
 
 const Content = styled.div`
@@ -39,7 +40,7 @@ const KapustaBackgroundStyled = styled(KapustaSecondaryBackground)`
   right: 110px;
 `;
 
-export const Tablet = () => {
+export const MainPage = () => {
   const { isTablet } = useGetDevice();
 
   return (

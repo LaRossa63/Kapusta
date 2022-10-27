@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import {
@@ -12,8 +12,9 @@ import {
 } from '@mui/material';
 import { DeleteIcon } from 'images';
 import './index.css';
-import { Collection } from 'components/protected/Home/Tablet/components/TableWithList/components';
 import { useGetDevice } from 'hooks';
+import { useLocation } from 'react-router-dom';
+import { Collection } from 'components/protected/Home/Device/TabletAndDesktop/MainPage/components/TableWithList/components';
 
 const Container = styled.div`
   margin-top: 48px;
@@ -125,7 +126,7 @@ const TableCellStyled = styled(TableCell)`
   }
 `;
 
-const TableCellLastStyled = styled(TableCellStyled)`
+const TableCellLastStyled = styled(TableCellStyled)<{ mode: string }>`
   &.MuiTableCell-root {
     height: 54px;
 
@@ -139,7 +140,7 @@ const TableCellLastStyled = styled(TableCellStyled)`
     align-items: center;
     justify-content: space-between;
 
-    color: red;
+    color: ${(props) => (props.mode === '/profit' ? 'green' : 'red')};
 
     @media (min-width: ${(props) => props.theme.device.desktop}) {
       padding-right: 40px;
@@ -166,6 +167,11 @@ const TableContainerStyled = styled(TableContainer)<{ component: any }>`
 
 export const TableList = () => {
   const { isDesktop } = useGetDevice();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    console.log(`Запрос на получение списка ${pathname}`);
+  }, [pathname]);
 
   return (
     <Container>
@@ -186,7 +192,7 @@ export const TableList = () => {
                 <TableCellStyled>{list.data}</TableCellStyled>
                 <TableCellStyled>{list.description}</TableCellStyled>
                 <TableCellStyled>{list.category}</TableCellStyled>
-                <TableCellLastStyled>
+                <TableCellLastStyled mode={pathname}>
                   {list.wastes} {list.wastes && <DeleteIcon cursor="pointer" />}
                 </TableCellLastStyled>
               </TableRow>
@@ -195,11 +201,7 @@ export const TableList = () => {
         </Table>
       </TableContainerStyled>
 
-      {isDesktop && (
-        <>
-          <Collection />
-        </>
-      )}
+      {isDesktop && <Collection />}
     </Container>
   );
 };

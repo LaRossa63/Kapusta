@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
+
+import { useLocation } from 'react-router-dom';
 
 const Container = styled.div`
   width: 100%;
@@ -73,6 +75,12 @@ const Text = styled.span`
 `;
 
 export const Collection = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    console.log(`Запрос на получение сводки ${pathname}`);
+  }, [pathname]);
+
   return (
     <Container>
       <Content>

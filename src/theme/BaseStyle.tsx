@@ -15,9 +15,12 @@ const ResetStyle = createGlobalStyle`
     letter-spacing: ${(props) => props.theme.font.letterSpacing};
   }
 
-
+  html {
+     height: 100%;
+  }
 
   body {
+    height: 100%;
     background-color: ${(props) => props.theme.background.body};
   }
 

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { Button, Label, SecondaryText } from 'components/Elements';
 import { GraphIcon } from 'images';
+import { useNavigateRecord } from 'hooks';
 
 const Container = styled.div`
   height: 44px;
@@ -81,6 +82,8 @@ const ButtonStyled = styled(Button)`
 `;
 
 export const TopPanel = () => {
+  const { handleClickRecord } = useNavigateRecord();
+
   return (
     <Container>
       <ContainerController>
@@ -92,7 +95,7 @@ export const TopPanel = () => {
         <ButtonStyled>Подтвердить</ButtonStyled>
       </ContainerController>
 
-      <Label>
+      <Label onClick={handleClickRecord}>
         <SecondaryTextStyled margin="0 20px 0 0">
           Перейти к отчетам
         </SecondaryTextStyled>

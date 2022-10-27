@@ -1,9 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { FC } from 'react';
 
 import Select from '@mui/material/Select';
 import { MenuItem, SelectChangeEvent } from '@mui/material';
 import './index.css';
+
+interface Props {
+  handleChangeSelectedCategory: (event: SelectChangeEvent) => void;
+  selectedCategory: string;
+}
 
 const listCategories = [
   'Транспорт',
@@ -19,15 +23,16 @@ const listCategories = [
   'Прочее',
 ];
 
-export const SelectList = () => {
-  const [category, setCategory] = React.useState('');
-
-  const handleChange = (event: SelectChangeEvent<any>) => {
-    setCategory(event.target.value);
-  };
-
+export const SelectList: FC<Props> = ({
+  handleChangeSelectedCategory,
+  selectedCategory,
+}) => {
   return (
-    <Select displayEmpty value={category} onChange={handleChange}>
+    <Select
+      displayEmpty
+      value={selectedCategory}
+      onChange={handleChangeSelectedCategory}
+    >
       <MenuItem disabled value="">
         Категория товара
       </MenuItem>

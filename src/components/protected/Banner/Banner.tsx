@@ -5,7 +5,8 @@ const Container = styled.div`
   width: 100%;
   height: 342px;
 
-  position: relative;
+  position: absolute;
+
   overflow: hidden;
 
   background-color: ${(props) => props.theme.background.banner};

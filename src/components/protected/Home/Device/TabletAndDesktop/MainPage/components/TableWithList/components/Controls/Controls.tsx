@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Input } from '@mui/material';
 import { CalculatorIcon, CalendarIcon } from 'images';
 import { SelectList, Calendar as TestCal, Button } from 'components/Elements';
+import { useCreateItemList } from 'hooks';
 
 const Container = styled.div`
   display: flex;
@@ -47,7 +48,7 @@ const Inputs = styled.div`
   }
 `;
 
-const Description = styled.input`
+const InputDescription = styled.input`
   width: 180px;
 
   padding-left: 20px;
@@ -64,7 +65,7 @@ const Description = styled.input`
   }
 `;
 
-const InputCalculator = styled(Input)`
+const InputAmount = styled(Input)`
   &.MuiInputBase-root {
     width: 90px;
     padding: 0 10px;
@@ -136,6 +137,17 @@ export const Controls = () => {
   const [isOpenCalendar, setIsOpenCalendar] = useState(false);
   const [selectedData, setSelectedData] = useState('21.11.2019');
 
+  const {
+    handleChangeDescriptionText,
+    handleChangeSelectedCategory,
+    handleChangeAmount,
+    handleCreate,
+    handleClearInput,
+    descriptionText,
+    selectedCategory,
+    amountText,
+  } = useCreateItemList();
+
   const handleOpenCalendar = () => {
     setIsOpenCalendar(!isOpenCalendar);
   };
@@ -148,18 +160,29 @@ export const Controls = () => {
       </Calendar>
 
       <Inputs>
-        <Description placeholder="Описание товара" />
-        <SelectList />
-        <InputCalculator
+        <InputDescription
+          placeholder="Описание товара"
+          value={descriptionText}
+          onChange={handleChangeDescriptionText}
+        />
+
+        <SelectList
+          handleChangeSelectedCategory={handleChangeSelectedCategory}
+          selectedCategory={selectedCategory}
+        />
+
+        <InputAmount
           type="number"
           placeholder="0,00"
           endAdornment={<CalculatorIcon />}
+          value={amountText}
+          onChange={handleChangeAmount}
         />
       </Inputs>
 
       <Buttons>
-        <ButtonStyled>ввод</ButtonStyled>
-        <ButtonStyled>очистить</ButtonStyled>
+        <ButtonStyled onClick={handleCreate}>ввод</ButtonStyled>
+        <ButtonStyled onClick={handleClearInput}>очистить</ButtonStyled>
       </Buttons>
 
       {isOpenCalendar && <TestCal />}

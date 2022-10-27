@@ -44,7 +44,7 @@ const Ellipse = styled.div<{ primary?: boolean }>`
 `;
 
 export const Header = () => {
-  const { isMobile, isTabAndDesktop } = useGetDevice();
+  const { isMobile, isTabletAndDesktop } = useGetDevice();
 
   return (
     <Container>
@@ -56,7 +56,7 @@ export const Header = () => {
 
       {isMobile && <Mobile />}
 
-      {isTabAndDesktop && <TabletDesktop />}
+      {isTabletAndDesktop && <TabletDesktop />}
     </Container>
   );
 };
