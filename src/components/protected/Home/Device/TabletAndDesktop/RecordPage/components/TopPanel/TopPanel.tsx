@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Label } from 'components/Elements';
-import { ArrowBackIcon, SliderLeftIcon, SliderRightIcon } from 'images';
+import { Label, SliderPeriod } from 'components/Elements';
+import { ArrowBackIcon } from 'images';
+import { useLocation } from 'react-router-dom';
+import { useNavigateRecord } from 'hooks';
 
 const Container = styled.div`
   height: 44px;
@@ -13,13 +15,12 @@ const Container = styled.div`
   margin-top: 40px;
 `;
 
-const SecondaryText = styled.p<{ fontWeight?: string; letterSpacing?: string }>`
+const SecondaryText = styled.p`
   font-size: ${(props) => props.theme.font.size.normal};
-  font-weight: ${(props) => props.fontWeight || '400'};
-  letter-spacing: ${(props) => props.letterSpacing || '0.04em'};
+  font-weight: '500';
+  letter-spacing: '0.02em';
 
   text-align: center;
-
   color: rgba(82, 85, 95, 0.7);
 `;
 
@@ -47,59 +48,23 @@ const CountBalance = styled.span`
   color: ${(props) => props.theme.font.color.main};
 `;
 
-const ContainerCurrentPeriod = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  margin-left: 100px;
-  gap: 5px;
-`;
-
-const CurrentPeriodText = styled.span`
-  font-weight: 700;
-  font-size: ${(props) => props.theme.font.size.normalBig};
-  line-height: 16px;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  text-align: center;
-
-  color: ${(props) => props.theme.font.color.main};
-`;
-
-const ContentCurrentPeriod = styled.div`
-  display: flex;
-  align-items: center;
-
-  gap: 16px;
-`;
-
 export const TopPanel = () => {
+  const { handleClickGoBack } = useNavigateRecord();
+
   return (
     <Container>
-      <Label gap="18px">
+      <Label gap="18px" onClick={handleClickGoBack}>
         <ArrowBackIcon />
         <SecondaryText>Вернуться на главную</SecondaryText>
       </Label>
 
       <ContainerBalance>
-        <SecondaryText fontWeight="500" letterSpacing="0.02em">
-          Баланс:
-        </SecondaryText>
+        <SecondaryText>Баланс:</SecondaryText>
 
         <CountBalance>55 000.00 UAH</CountBalance>
       </ContainerBalance>
 
-      <ContainerCurrentPeriod>
-        <SecondaryText>Текущий период:</SecondaryText>
-
-        <ContentCurrentPeriod>
-          <SliderLeftIcon cursor="pointer" />
-
-          <CurrentPeriodText>ноябрь 2019</CurrentPeriodText>
-
-          <SliderRightIcon cursor="pointer" />
-        </ContentCurrentPeriod>
-      </ContainerCurrentPeriod>
+      <SliderPeriod />
     </Container>
   );
 };

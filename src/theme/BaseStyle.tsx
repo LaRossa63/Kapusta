@@ -13,6 +13,7 @@ const ResetStyle = createGlobalStyle`
     font-weight: ${(props) => props.theme.font.fontWeight};
     line-height: ${(props) => props.theme.font.lineHeight};
     letter-spacing: ${(props) => props.theme.font.letterSpacing};
+
   }
 
   html {

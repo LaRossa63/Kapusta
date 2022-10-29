@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { Input } from '@mui/material';
-import { CalculatorIcon, CalendarIcon } from 'images';
-import { SelectList, Calendar as TestCal, Button } from 'components/Elements';
-import { useCreateItemList } from 'hooks';
+import { CalculatorIcon } from 'images';
+import { CategoryList, Calendar, Button } from 'components/Elements';
+import { useHandleCreateListItem } from 'hooks';
 
 const Container = styled.div`
   display: flex;
@@ -13,22 +13,6 @@ const Container = styled.div`
   @media (min-width: ${(props) => props.theme.device.desktop}) {
     flex-wrap: nowrap;
   }
-`;
-
-const Calendar = styled.div`
-  display: flex;
-  align-items: center;
-
-  gap: 10px;
-  margin-right: 44px;
-`;
-
-const CalendarText = styled.span`
-  font-weight: 900;
-  font-size: ${(props) => props.theme.font.size.normal};
-  text-transform: uppercase;
-
-  color: ${(props) => props.theme.font.color.secondary}; ;
 `;
 
 const Inputs = styled.div`
@@ -134,9 +118,6 @@ const ButtonStyled = styled(Button)`
 `;
 
 export const Controls = () => {
-  const [isOpenCalendar, setIsOpenCalendar] = useState(false);
-  const [selectedData, setSelectedData] = useState('21.11.2019');
-
   const {
     handleChangeDescriptionText,
     handleChangeSelectedCategory,
@@ -146,18 +127,12 @@ export const Controls = () => {
     descriptionText,
     selectedCategory,
     amountText,
-  } = useCreateItemList();
-
-  const handleOpenCalendar = () => {
-    setIsOpenCalendar(!isOpenCalendar);
-  };
+    currentListCategory,
+  } = useHandleCreateListItem();
 
   return (
     <Container>
-      <Calendar>
-        <CalendarIcon onClick={handleOpenCalendar} />
-        <CalendarText>{selectedData}</CalendarText>
-      </Calendar>
+      <Calendar />
 
       <Inputs>
         <InputDescription
@@ -166,9 +141,10 @@ export const Controls = () => {
           onChange={handleChangeDescriptionText}
         />
 
-        <SelectList
+        <CategoryList
           handleChangeSelectedCategory={handleChangeSelectedCategory}
           selectedCategory={selectedCategory}
+          currentListCategory={currentListCategory}
         />
 
         <InputAmount
@@ -184,8 +160,6 @@ export const Controls = () => {
         <ButtonStyled onClick={handleCreate}>ввод</ButtonStyled>
         <ButtonStyled onClick={handleClearInput}>очистить</ButtonStyled>
       </Buttons>
-
-      {isOpenCalendar && <TestCal />}
     </Container>
   );
 };

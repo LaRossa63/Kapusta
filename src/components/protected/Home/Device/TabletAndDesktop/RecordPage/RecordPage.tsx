@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useLocation } from 'react-router-dom';
 
 import {
   Graph,
@@ -17,11 +16,13 @@ const Container = styled.div`
 
   position: relative;
   z-index: 100;
+
+  @media (min-width: ${(props) => props.theme.device.desktop}) {
+    max-width: 1034px;
+  }
 `;
 
 export const RecordPage = () => {
-  const { pathname } = useLocation();
-
   return (
     <Container>
       <TopPanel />

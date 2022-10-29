@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import { DeleteIcon } from 'images';
 import './index.css';
-import { useGetDevice } from 'hooks';
+import { useGetDevice, useListOutlayAndProfit } from 'hooks';
 import { useLocation } from 'react-router-dom';
 import { Collection } from 'components/protected/Home/Device/TabletAndDesktop/MainPage/components/TableWithList/components';
 
@@ -25,72 +25,6 @@ const Container = styled.div`
     display: flex;
   }
 `;
-
-const lists = [
-  {
-    id: 0,
-    data: '24.10.2022',
-    description: 'Поездка в метро',
-    category: 'Транспорт',
-    wastes: '-30.00 ₽',
-  },
-  {
-    id: 1,
-    data: 'data',
-    description: 'description',
-    category: 'category',
-    wastes: 'wastes',
-  },
-  {
-    id: 2,
-    data: 'data',
-    description: 'description',
-    category: 'category',
-    wastes: 'wastes',
-  },
-  {
-    id: 3,
-    data: '',
-    description: '',
-    category: '',
-    wastes: '',
-  },
-  {
-    id: 4,
-    data: '',
-    description: '',
-    category: '',
-    wastes: '',
-  },
-  {
-    id: 5,
-    data: '',
-    description: '',
-    category: '',
-    wastes: '',
-  },
-  {
-    id: 6,
-    data: '',
-    description: '',
-    category: '',
-    wastes: '',
-  },
-  {
-    id: 7,
-    data: '',
-    description: '',
-    category: '',
-    wastes: '',
-  },
-  {
-    id: 8,
-    data: '',
-    description: '',
-    category: '',
-    wastes: '',
-  },
-];
 
 const TableHeadStyled = styled(TableHead)`
   & .MuiTableCell-root {
@@ -169,9 +103,7 @@ export const TableList = () => {
   const { isDesktop } = useGetDevice();
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    console.log(`Запрос на получение списка ${pathname}`);
-  }, [pathname]);
+  const { handleClickDelete, currentList } = useListOutlayAndProfit();
 
   return (
     <Container>
@@ -187,13 +119,19 @@ export const TableList = () => {
           </TableHeadStyled>
 
           <TableBody>
-            {lists.map((list) => (
+            {currentList.map((list) => (
               <TableRow key={list.id}>
                 <TableCellStyled>{list.data}</TableCellStyled>
                 <TableCellStyled>{list.description}</TableCellStyled>
                 <TableCellStyled>{list.category}</TableCellStyled>
                 <TableCellLastStyled mode={pathname}>
-                  {list.wastes} {list.wastes && <DeleteIcon cursor="pointer" />}
+                  {list.wastes}
+                  {list.wastes && (
+                    <DeleteIcon
+                      cursor="pointer"
+                      onClick={() => handleClickDelete(list.id)}
+                    />
+                  )}
                 </TableCellLastStyled>
               </TableRow>
             ))}

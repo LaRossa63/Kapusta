@@ -83,14 +83,14 @@ const ButtonStyled = styled(Button)`
 `;
 
 export const Form = () => {
-  const navigator = useNavigate();
+  const navigate = useNavigate();
 
   const handleClickSignUp = () => {
     console.log('message');
   };
 
   const handleClickSignIn = () => {
-    navigator(`/${AppRoutes.SIGNIN}`);
+    navigate(`/${AppRoutes.SIGNIN}`);
   };
 
   return (

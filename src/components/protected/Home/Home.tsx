@@ -8,7 +8,10 @@ import {
   MainPage as MainPageTabletAndDesktop,
   RecordPage as RecordPageTabletAndDesktop,
 } from './Device/TabletAndDesktop';
-import { MainPage as MainPageMobile } from './Device/Mobile';
+import {
+  MainPage as MainPageMobile,
+  RecordPage as RecordPageMobile,
+} from './Device/Mobile';
 
 export const Home = () => {
   const { pathname } = useLocation();
@@ -27,7 +30,12 @@ export const Home = () => {
     pathname === AppRoutes.RECORD_OUTLAY ||
     pathname === AppRoutes.RECORD_PROFIT
   ) {
-    return <>{isTabletAndDesktop && <RecordPageTabletAndDesktop />}</>;
+    return (
+      <>
+        {isTabletAndDesktop && <RecordPageTabletAndDesktop />}
+        {isMobile && <RecordPageMobile />}
+      </>
+    );
   }
 
   return <></>;

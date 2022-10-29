@@ -81,14 +81,14 @@ const ButtonStyled = styled(Button)`
 `;
 
 export const Form = () => {
-  const navigator = useNavigate();
+  const navigate = useNavigate();
 
   const handleClickSignIn = () => {
     console.log('войти');
   };
 
   const handleClickSignUp = () => {
-    navigator(`/${AppRoutes.SIGNUP}`);
+    navigate(`/${AppRoutes.SIGNUP}`);
   };
 
   return (

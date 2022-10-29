@@ -1,18 +1,35 @@
+import { CalendarIcon } from 'images';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import DatePicker from 'react-datepicker';
 
-import 'react-datepicker/dist/react-datepicker.css';
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+  margin-right: 44px;
+`;
+
+const CalendarText = styled.span`
+  font-weight: 900;
+  font-size: ${(props) => props.theme.font.size.normal};
+  text-transform: uppercase;
+
+  color: ${(props) => props.theme.font.color.secondary}; ;
+`;
 
 export const Calendar = () => {
-  const [startDate, setStartDate] = useState(new Date());
+  const [isOpenCalendar, setIsOpenCalendar] = useState(false);
+  const [selectedData, setSelectedData] = useState('21.11.2019');
+
+  const handleOpenCalendar = () => {
+    setIsOpenCalendar(!isOpenCalendar);
+  };
 
   return (
-    <div>
-      <DatePicker
-        selected={startDate}
-        onChange={(date: Date) => setStartDate(date)}
-      />
-    </div>
+    <Container>
+      <CalendarIcon onClick={handleOpenCalendar} />
+      <CalendarText>{selectedData}</CalendarText>
+    </Container>
   );
 };

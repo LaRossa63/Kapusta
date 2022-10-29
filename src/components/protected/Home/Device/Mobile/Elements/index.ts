@@ -1,2 +1,2 @@
-export * from './RecordsContainer';
-export * from './BottomPanel';
+export * from './ContainerRecords';
+export * from './PanelTabs';

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 
 import { Button } from 'components/Elements';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { AppRoutes } from 'types/types';
+import { useNavigateTabs } from 'hooks';
 
 const Container = styled.div``;
 
@@ -32,32 +32,21 @@ const ButtonStyled = styled(Button)<{ active?: any }>`
 `;
 
 export const Tabs = () => {
-  const { pathname } = useLocation();
-  const navigator = useNavigate();
-  const [activeBtn, setActiveBtn] = useState(pathname);
-
-  const handleClickOutlay = () => {
-    navigator(AppRoutes.OUTLAY);
-    setActiveBtn(AppRoutes.OUTLAY);
-  };
-
-  const handleClickProfit = () => {
-    navigator(AppRoutes.PROFIT);
-    setActiveBtn(AppRoutes.PROFIT);
-  };
+  const { handleClickByOutlay, handleClickByProfit, currentActiveTabs } =
+    useNavigateTabs();
 
   return (
     <Container>
       <ButtonStyled
-        onClick={handleClickOutlay}
-        active={activeBtn === AppRoutes.OUTLAY}
+        onClick={handleClickByOutlay}
+        active={currentActiveTabs === AppRoutes.OUTLAY}
       >
         Расход
       </ButtonStyled>
 
       <ButtonStyled
-        onClick={handleClickProfit}
-        active={activeBtn === AppRoutes.PROFIT}
+        onClick={handleClickByProfit}
+        active={currentActiveTabs === AppRoutes.PROFIT}
       >
         Доход
       </ButtonStyled>

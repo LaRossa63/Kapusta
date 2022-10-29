@@ -11,7 +11,7 @@ export const AppRouter = () => {
   const commonRoutes = [
     {
       path: '*',
-      element: <Navigate to={isAuth ? AppRoutes.HOME : AppRoutes.SIGNIN} />,
+      element: <Navigate to={isAuth ? AppRoutes.OUTLAY : AppRoutes.SIGNIN} />,
     },
   ];
 

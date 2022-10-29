@@ -11,7 +11,7 @@ export const SliderRightIcon: FC<SVGProps<SVGSVGElement>> = (props) => {
         cursor="pointer"
         {...props}
       >
-        <path d="M1 1L5 6L1 11" stroke="#FF751D" stroke-width="2" />
+        <path d="M1 1L5 6L1 11" stroke="#FF751D" strokeWidth="2" />
       </svg>
     </>
   );
