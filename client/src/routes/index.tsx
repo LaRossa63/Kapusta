@@ -6,7 +6,7 @@ import { ProtectedRoutes } from './protectedRoutes';
 import { PublicRoutes } from './publicRoutes';
 
 export const AppRouter = () => {
-  const [isAuth, setIsAuth] = useState(true);
+  const [isAuth, setIsAuth] = useState(false);
 
   const commonRoutes = [
     {
