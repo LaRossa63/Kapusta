@@ -41,8 +41,16 @@ export const UserService = {
     }
   },
 
-  async activate(req, res, next) {
+  async activate(activationLink) {
     try {
+      const user = await UserModel.findOne({ activationLink });
+
+      if (!user) {
+        throw new Error('пользователь не найдем!');
+      }
+
+      user.isActivated = true;
+      await user.save();
     } catch (error) {
       res.status(500).json(error.message);
     }

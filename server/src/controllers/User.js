@@ -1,3 +1,5 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
 import { UserService } from '../service/index.js';
 
 export const UserController = {
@@ -33,6 +35,10 @@ export const UserController = {
 
   async activate(req, res, next) {
     try {
+      const activationLink = req.params.link;
+      await UserService.activate(activationLink);
+
+      return res.redirect(process.env.CLIENT_URL);
     } catch (error) {
       res.status(500).json(error.message);
     }
