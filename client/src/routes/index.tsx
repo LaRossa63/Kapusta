@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCheckAuth } from 'api/services/Auth';
 import { Navigate, useRoutes } from 'react-router-dom';
 
 import { AppRoutes } from 'types/types';
@@ -6,7 +6,7 @@ import { ProtectedRoutes } from './protectedRoutes';
 import { PublicRoutes } from './publicRoutes';
 
 export const AppRouter = () => {
-  const [isAuth, setIsAuth] = useState(false);
+  const { data: isAuth } = useCheckAuth();
 
   const commonRoutes = [
     {

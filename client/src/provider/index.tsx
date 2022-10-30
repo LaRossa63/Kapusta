@@ -1,9 +1,12 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
+import { QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import { BaseStyle } from 'theme/BaseStyle';
 import { theme } from 'theme/Theme';
+import { queryClient } from 'api';
 
 interface Props {
   children: React.ReactNode;
@@ -12,11 +15,14 @@ interface Props {
 export const AppProvider: FC<Props> = ({ children }) => {
   return (
     <>
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <BaseStyle>{children}</BaseStyle>
-        </ThemeProvider>
-      </BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <ThemeProvider theme={theme}>
+            <BaseStyle>{children}</BaseStyle>
+          </ThemeProvider>
+        </BrowserRouter>
+        <ReactQueryDevtools />
+      </QueryClientProvider>
     </>
   );
 };

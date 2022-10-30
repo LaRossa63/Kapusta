@@ -2,6 +2,8 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 import nodemailer from 'nodemailer';
 
+import { ApiError } from '../exceptions/index.js';
+
 class mailService {
   constructor() {
     this.transporter = nodemailer.createTransport({
@@ -17,20 +19,24 @@ class mailService {
   }
 
   async sendActivationMail(to, link) {
-    const stateLink = `${process.env.API_URL}/api/activate/${link}`;
+    try {
+      const stateLink = `${process.env.API_URL}/api/activate/${link}`;
 
-    await this.transporter.sendMail({
-      from: process.env.SMTP_USER,
-      to,
-      subject: 'Активация аккаунта на ' + process.env.API_URL,
-      text: '',
-      html: `
+      await this.transporter.sendMail({
+        from: process.env.SMTP_USER,
+        to,
+        subject: 'Активация аккаунта на ' + process.env.API_URL,
+        text: '',
+        html: `
                     <div>
                         <h1>Для активации перейдите по ссылке</h1>
                         <a href="${stateLink}">${stateLink}</a>
                     </div>
                 `,
-    });
+      });
+    } catch (error) {
+      return ApiError.BadRequest('Почта не валидная');
+    }
   }
 }
 

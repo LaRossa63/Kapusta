@@ -10,6 +10,7 @@ UserRouter.post(
   '/registration',
   body('email').isEmail(),
   body('password').isLength({ min: 6, max: 16 }),
+  body('nickName').isLength({ min: 3, max: 12 }),
   UserController.registration
 );
 UserRouter.post('/login', UserController.login);

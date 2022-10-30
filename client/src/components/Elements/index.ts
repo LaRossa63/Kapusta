@@ -7,3 +7,4 @@ export * from './CategoryList';
 export * from './TableList';
 export * from './SliderPeriod';
 export * from './SliderOutlayAndProfit';
+export * from './ErrorText';

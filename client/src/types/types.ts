@@ -8,3 +8,51 @@ export enum AppRoutes {
   SIGNUP = 'signup',
   SIGNIN = 'signin',
 }
+
+export enum KeyApi {
+  CHECK_AUTH = 'auth',
+}
+
+export enum LinksApi {
+  BASE_URL = 'http://localhost:4000/api',
+
+  USER_SIGN_UP = '/registration',
+  USER_SIGN_IN = '/login',
+  USER_LOGOUT = '/logout',
+  USER_REFRESH_TOKEN = '/refresh',
+}
+
+export interface SignInDTO {
+  email: string;
+  password: string;
+}
+
+export interface SignUpDTO {
+  email: string;
+  nickName: string;
+  password: string;
+}
+
+export enum StandardsValidateForm {
+  EMAIL_MIN = 6,
+
+  PASSWORD_MIN = 6,
+  PASSWORD_MAX = 16,
+
+  NICK_NAME_MIN = 3,
+  NICK_NAME_MAX = 12,
+}
+
+export interface UserApi {
+  id: string;
+  email: string;
+  nickName: string;
+  isActivated: boolean;
+}
+
+export interface AuthResponseApi {
+  user: UserApi;
+
+  accessToken: string;
+  refreshToken: string;
+}

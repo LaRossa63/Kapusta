@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 import { Avatar, SecondaryText } from 'components/Elements';
+import { useHeaderLogout } from 'hooks/Auth';
 
 const Container = styled.div`
   display: flex;
@@ -38,12 +39,17 @@ const SecondaryTextStyled = styled(SecondaryText)<{
 `;
 
 export const TabletDesktop = () => {
+  const { handleClickLogout, currentName } = useHeaderLogout();
+
   return (
     <Container>
-      <Avatar name="M" margin="0 16px 0 0" />
+      <Avatar name={currentName} margin="0 16px 0 0" />
       <ContainerText>
-        <SecondaryTextStyled one>User Name</SecondaryTextStyled>
-        <SecondaryTextStyled two>Выйти</SecondaryTextStyled>
+        <SecondaryTextStyled one>{currentName}</SecondaryTextStyled>
+
+        <SecondaryTextStyled two onClick={handleClickLogout}>
+          Выйти
+        </SecondaryTextStyled>
       </ContainerText>
     </Container>
   );

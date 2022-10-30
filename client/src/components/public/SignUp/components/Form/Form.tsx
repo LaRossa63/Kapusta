@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 
-import { Button } from 'components/Elements';
-import { AppRoutes } from 'types/types';
+import { Button, ErrorText } from 'components/Elements';
+import { useFormSignUp } from 'hooks/Auth';
 
 const MyForm = styled.form`
   display: flex;
@@ -83,44 +82,71 @@ const ButtonStyled = styled(Button)`
 `;
 
 export const Form = () => {
-  const navigate = useNavigate();
-
-  const handleClickSignUp = () => {
-    console.log('message');
-  };
-
-  const handleClickSignIn = () => {
-    navigate(`/${AppRoutes.SIGNIN}`);
-  };
+  const {
+    handleSubmitForm,
+    handleChangeNickName,
+    handleChangeEmail,
+    handleChangePassword,
+    handleChangePasswordRepeat,
+    handleClickSignIn,
+    email,
+    nickName,
+    password,
+    passwordRepeat,
+    error,
+    isLoading,
+  } = useFormSignUp();
 
   return (
     <MyForm>
       <Label>
         Имя:
-        <Input type="email" placeholder="your@email.com" />
+        <Input
+          type="text"
+          placeholder="Имя пользователя"
+          onChange={handleChangeNickName}
+          value={nickName}
+        />
       </Label>
 
       <Label>
         Электронная почта:
-        <Input type="email" placeholder="your@email.com" />
+        <Input
+          type="email"
+          placeholder="your@email.com"
+          onChange={handleChangeEmail}
+          value={email}
+        />
       </Label>
 
       <Label>
         Пароль:
-        <Input type="password" placeholder="Пароль" />
+        <Input
+          type="password"
+          placeholder="Пароль"
+          onChange={handleChangePassword}
+          value={password}
+        />
       </Label>
 
       <Label>
         Повторно пароль:
-        <Input type="password" placeholder="Пароль" />
+        <Input
+          type="password"
+          placeholder="Пароль"
+          onChange={handleChangePasswordRepeat}
+          value={passwordRepeat}
+        />
       </Label>
 
       <ContainerBtn>
-        <ButtonStyled onClick={handleClickSignUp}>
+        <ButtonStyled onClick={handleSubmitForm}>
           Зарегистрироваться
         </ButtonStyled>
 
         <ButtonStyled onClick={handleClickSignIn}>Авторизоваться</ButtonStyled>
+
+        {error && <ErrorText>{error}</ErrorText>}
       </ContainerBtn>
     </MyForm>
   );

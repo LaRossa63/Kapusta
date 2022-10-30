@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { Avatar } from 'components/Elements';
 import { ExitIcon } from 'images';
+import { useHeaderLogout } from 'hooks/Auth';
 
 const Container = styled.div`
   display: flex;
@@ -12,11 +13,13 @@ const Container = styled.div`
 `;
 
 export const Mobile = () => {
+  const { handleClickLogout, currentName } = useHeaderLogout();
+
   return (
     <>
       <Container>
-        <Avatar name="M" />
-        <ExitIcon />
+        <Avatar name={currentName} />
+        <ExitIcon onClick={handleClickLogout} />
       </Container>
     </>
   );

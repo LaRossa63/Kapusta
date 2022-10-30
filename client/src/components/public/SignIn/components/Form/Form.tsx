@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Button } from 'components/Elements';
-import { useNavigate } from 'react-router-dom';
-import { AppRoutes } from 'types/types';
+import { Button, ErrorText } from 'components/Elements';
+import { useFormSignIn } from 'hooks/Auth';
 
 const MyForm = styled.form`
   display: flex;
@@ -81,32 +80,47 @@ const ButtonStyled = styled(Button)`
 `;
 
 export const Form = () => {
-  const navigate = useNavigate();
-
-  const handleClickSignIn = () => {
-    console.log('войти');
-  };
-
-  const handleClickSignUp = () => {
-    navigate(`/${AppRoutes.SIGNUP}`);
-  };
+  const {
+    handleSubmitForm,
+    handleChangeEmail,
+    handleChangePassword,
+    handleClickSignUp,
+    email,
+    password,
+    isLoading,
+    error,
+  } = useFormSignIn();
 
   return (
     <MyForm>
       <Label>
         Электронная почта:
-        <Input type="email" placeholder="your@email.com" />
+        <Input
+          type="email"
+          placeholder="your@email.com"
+          onChange={handleChangeEmail}
+          value={email}
+        />
       </Label>
 
       <Label>
         Пароль:
-        <Input type="password" placeholder="Пароль" />
+        <Input
+          type="password"
+          placeholder="Пароль"
+          onChange={handleChangePassword}
+          value={password}
+        />
       </Label>
 
       <ContainerBtn>
-        <ButtonStyled onClick={handleClickSignIn}>Войти</ButtonStyled>
+        <ButtonStyled onClick={handleSubmitForm} disabled={isLoading}>
+          Войти
+        </ButtonStyled>
         <ButtonStyled onClick={handleClickSignUp}>Регистрация</ButtonStyled>
       </ContainerBtn>
+
+      {error && <ErrorText>{error}</ErrorText>}
     </MyForm>
   );
 };

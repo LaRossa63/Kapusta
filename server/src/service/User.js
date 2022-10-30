@@ -7,19 +7,27 @@ import { MailService, TokenService } from './index.js';
 import { ApiError } from '../exceptions/index.js';
 
 export const UserService = {
-  async registration(email, password) {
-    const candidate = await UserModel.findOne({ email });
+  async registration(email, nickName, password) {
+    const candidateEmail = await UserModel.findOne({ email });
+    if (candidateEmail) {
+      throw ApiError.BadRequest('Данная почта уже используется');
+    }
 
-    if (candidate) {
-      throw ApiError.BadRequest('Почта занята');
+    const candidateNickMan = await UserModel.findOne({ nickName });
+    if (candidateNickMan) {
+      throw ApiError.BadRequest('Данное имя уже используется');
     }
 
     const hashPassword = await bcrypt.hash(password, 3);
     const activationLink = v4();
 
-    const newUser = await UserModel.create({ email, password: hashPassword });
     await MailService.sendActivationMail(email, activationLink);
 
+    const newUser = await UserModel.create({
+      email,
+      nickName,
+      password: hashPassword,
+    });
     const userDTO = new UserDto(newUser);
     const tokens = await TokenService.generateTokens({ ...userDTO });
 
@@ -82,7 +90,7 @@ export const UserService = {
     const tokens = await TokenService.generateTokens({ ...userDto });
 
     await TokenService.saveToken(userDto.id, tokens.refreshToken);
-    return { ...tokens, user: userDto };
+    return { user: userDto, ...tokens };
   },
 
   async getAllUsers() {

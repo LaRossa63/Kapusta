@@ -11,14 +11,16 @@ export const UserController = {
       const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
-        return next(
-          ApiError.BadRequest('Ошибка при валидации', errors.array())
-        );
+        return next(ApiError.BadRequest('Заполните все поля', errors.array()));
       }
 
-      const { email, password } = req.body;
+      const { email, nickName, password } = req.body;
 
-      const response = await UserService.registration(email, password);
+      const response = await UserService.registration(
+        email,
+        nickName,
+        password
+      );
       res.cookie('refreshToken', response.refreshToken, {
         httpOnly: true,
         maxAge: 30 * 24 * 60 * 60 * 1000,
