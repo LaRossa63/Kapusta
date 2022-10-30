@@ -7,6 +7,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
 import { UserRouter } from './router/index.js';
+import { ErrorMiddlewares } from './middlewares/index.js';
 
 const app = express();
 app.use(express.json());
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(morgan('dev'));
 
 app.use('/api', UserRouter);
+app.use(ErrorMiddlewares);
 
 const AppStart = async () => {
   try {
@@ -22,6 +24,7 @@ const AppStart = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
+
     app.listen(process.env.PORT || 4000);
   } catch (e) {
     console.log(e);

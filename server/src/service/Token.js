@@ -5,9 +5,9 @@ import jwt from 'jsonwebtoken';
 import { TokenModel } from '../models/index.js';
 
 export const TokenService = {
-  async generateToken(payload) {
+  async generateTokens(payload) {
     const accessToken = jwt.sign(payload, process.env.SECRET_ACCESS_TOKEN, {
-      expiresIn: '3m',
+      expiresIn: '30s',
     });
 
     const refreshToken = jwt.sign(payload, process.env.SECRET_REFRESH_TOKEN, {
@@ -17,20 +17,44 @@ export const TokenService = {
     return { accessToken, refreshToken };
   },
 
-  async saveToken(user, refreshToken) {
-    const tokenData = await TokenModel.findOne({ user });
+  async saveToken(userId, refreshToken) {
+    const tokenData = await TokenModel.findOne({ user: userId });
 
     if (tokenData) {
       tokenData.refreshToken = refreshToken;
-
       return tokenData.save();
     }
 
-    const token = await TokenModel.create({
-      user,
-      refreshToken,
-    });
-
+    const token = await TokenModel.create({ user: userId, refreshToken });
     return token;
+  },
+
+  async removeToken(refreshToken) {
+    const tokenData = await TokenModel.deleteOne({ refreshToken });
+
+    return tokenData;
+  },
+
+  async validateAccessToken(token) {
+    try {
+      const userData = jwt.verify(token, process.env.SECRET_ACCESS_TOKEN);
+      return userData;
+    } catch (error) {
+      return null;
+    }
+  },
+
+  async validateRefreshToken(token) {
+    try {
+      const userData = jwt.verify(token, process.env.SECRET_REFRESH_TOKEN);
+      return userData;
+    } catch (error) {
+      return null;
+    }
+  },
+
+  async findToken(refreshToken) {
+    const tokenData = TokenModel.findOne({ refreshToken });
+    return tokenData;
   },
 };
