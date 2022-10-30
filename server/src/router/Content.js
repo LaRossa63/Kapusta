@@ -10,3 +10,19 @@ ContentRouter.get(
   AuthMiddlewares,
   ContentController.getListCategory
 );
+
+ContentRouter.post('/outlay', AuthMiddlewares, ContentController.addOutlay);
+ContentRouter.get('/outlay', AuthMiddlewares, ContentController.getOutlay);
+ContentRouter.delete(
+  '/outlay/:id',
+  AuthMiddlewares,
+  ContentController.deleteOutlay
+);
+
+ContentRouter.post('/profit', AuthMiddlewares, ContentController.addProfit);
+ContentRouter.get('/profit', AuthMiddlewares, ContentController.getProfit);
+ContentRouter.delete(
+  '/profit/:id',
+  AuthMiddlewares,
+  ContentController.deleteProfit
+);
