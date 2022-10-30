@@ -3,11 +3,12 @@ import React, { FC } from 'react';
 import Select from '@mui/material/Select';
 import { MenuItem, SelectChangeEvent } from '@mui/material';
 import './index.css';
+import { Category } from 'types/types';
 
 interface Props {
   handleChangeSelectedCategory: (event: SelectChangeEvent) => void;
   selectedCategory: string;
-  currentListCategory: string[];
+  currentListCategory: Category[];
 }
 
 export const CategoryList: FC<Props> = ({
@@ -26,8 +27,8 @@ export const CategoryList: FC<Props> = ({
       </MenuItem>
 
       {currentListCategory.map((category) => (
-        <MenuItem key={category} value={category}>
-          {category}
+        <MenuItem key={category._id} value={category.text}>
+          {category.text}
         </MenuItem>
       ))}
     </Select>

@@ -1,4 +1,4 @@
-import { Axios } from 'api/Axios';
+import { Axios } from 'api';
 
 import { AuthResponseApi, LinksApi, SignInDTO, SignUpDTO } from 'types/types';
 

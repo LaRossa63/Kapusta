@@ -8,14 +8,22 @@ import {
   MainPage as MainPageTabletAndDesktop,
   RecordPage as RecordPageTabletAndDesktop,
 } from './Device/TabletAndDesktop';
+
 import {
   MainPage as MainPageMobile,
   RecordPage as RecordPageMobile,
 } from './Device/Mobile';
+import { useGetListCategory } from 'api/services/Content';
 
 export const Home = () => {
   const { pathname } = useLocation();
   const { isMobile, isTabletAndDesktop } = useGetDevice();
+
+  const { isLoading } = useGetListCategory();
+
+  if (isLoading) {
+    return <h1>Загрузка</h1>;
+  }
 
   if (pathname === AppRoutes.OUTLAY || pathname === AppRoutes.PROFIT) {
     return (

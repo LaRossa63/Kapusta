@@ -11,6 +11,8 @@ export enum AppRoutes {
 
 export enum KeyApi {
   CHECK_AUTH = 'auth',
+
+  CATEGORY_LIST = 'category_list',
 }
 
 export enum LinksApi {
@@ -20,6 +22,8 @@ export enum LinksApi {
   USER_SIGN_IN = '/login',
   USER_LOGOUT = '/logout',
   USER_REFRESH_TOKEN = '/refresh',
+
+  CATEGORY_LIST = '/category_list',
 }
 
 export interface SignInDTO {
@@ -55,4 +59,14 @@ export interface AuthResponseApi {
 
   accessToken: string;
   refreshToken: string;
+}
+
+export interface Category {
+  _id: string;
+  text: string;
+}
+
+export interface ResponseListCategoryApi {
+  outlay: Category[];
+  profit: Category[];
 }
