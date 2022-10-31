@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import {
@@ -119,22 +119,23 @@ export const TableList = () => {
           </TableHeadStyled>
 
           <TableBody>
-            {currentList.map((list) => (
-              <TableRow key={list.id}>
-                <TableCellStyled>{list.data}</TableCellStyled>
-                <TableCellStyled>{list.description}</TableCellStyled>
-                <TableCellStyled>{list.category}</TableCellStyled>
-                <TableCellLastStyled mode={pathname}>
-                  {list.wastes}
-                  {list.wastes && (
-                    <DeleteIcon
-                      cursor="pointer"
-                      onClick={() => handleClickDelete(list.id)}
-                    />
-                  )}
-                </TableCellLastStyled>
-              </TableRow>
-            ))}
+            {currentList &&
+              currentList.map((list) => (
+                <TableRow key={list.id}>
+                  <TableCellStyled>{list.data}</TableCellStyled>
+                  <TableCellStyled>{list.description}</TableCellStyled>
+                  <TableCellStyled>{list.category}</TableCellStyled>
+                  <TableCellLastStyled mode={pathname}>
+                    {list.amount}
+                    {list.amount && (
+                      <DeleteIcon
+                        cursor="pointer"
+                        onClick={() => handleClickDelete(list.id)}
+                      />
+                    )}
+                  </TableCellLastStyled>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainerStyled>

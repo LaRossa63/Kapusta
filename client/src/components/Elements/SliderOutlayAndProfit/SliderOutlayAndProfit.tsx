@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { SliderLeftIcon, SliderRightIcon } from 'images';
 import { Button } from 'components/Elements';
 import { AppRoutes } from 'types/types';
+import { useCurrentPage } from 'hooks';
 
 const ContainerSlider = styled.div`
   display: flex;
@@ -32,15 +33,15 @@ const ButtonStyled = styled(Button)`
 `;
 
 export const SliderOutlayAndProfit = () => {
-  const { pathname } = useLocation();
   const navigate = useNavigate();
+  const { isOpenOutlay, isOpenProfit } = useCurrentPage();
 
   const getStartCurrentIndex = () => {
-    if (pathname === AppRoutes.RECORD_OUTLAY) {
+    if (isOpenOutlay()) {
       return 0;
     }
 
-    if (pathname === AppRoutes.RECORD_PROFIT) {
+    if (isOpenProfit()) {
       return 1;
     }
 

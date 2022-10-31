@@ -7,7 +7,7 @@ import { useNavigateTabs } from 'hooks';
 
 const Container = styled.div``;
 
-const ButtonStyled = styled(Button)<{ active?: any }>`
+const ButtonStyled = styled(Button)<{ active: number }>`
   &.MuiButtonBase-root {
     font-weight: 700;
     font-size: ${(props) => props.theme.font.size.normal};
@@ -22,12 +22,13 @@ const ButtonStyled = styled(Button)<{ active?: any }>`
     border-top-right-radius: 16px;
 
     ${(props) =>
-      props.active &&
-      css`
-        color: ${(props) =>
-          props.theme.controller.button.color.selectedSecondary};
-        background-color: #fefefe;
-      `}
+      props.active
+        ? css`
+            color: ${(props) =>
+              props.theme.controller.button.color.selectedSecondary};
+            background-color: #fefefe;
+          `
+        : null}
   }
 `;
 
@@ -39,14 +40,14 @@ export const Tabs = () => {
     <Container>
       <ButtonStyled
         onClick={handleClickByOutlay}
-        active={currentActiveTabs === AppRoutes.OUTLAY}
+        active={Number(currentActiveTabs === AppRoutes.OUTLAY)}
       >
         Расход
       </ButtonStyled>
 
       <ButtonStyled
         onClick={handleClickByProfit}
-        active={currentActiveTabs === AppRoutes.PROFIT}
+        active={Number(currentActiveTabs === AppRoutes.PROFIT)}
       >
         Доход
       </ButtonStyled>

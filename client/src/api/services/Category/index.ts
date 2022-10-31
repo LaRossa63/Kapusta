@@ -1,2 +1,2 @@
-export * from './Content.service';
+export * from './Category.service';
 export * from './useGetListCategory';

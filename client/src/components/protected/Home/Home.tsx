@@ -1,8 +1,6 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 
-import { useGetDevice } from 'hooks';
-import { AppRoutes } from 'types/types';
+import { useCurrentPage, useGetDevice } from 'hooks';
 
 import {
   MainPage as MainPageTabletAndDesktop,
@@ -13,10 +11,11 @@ import {
   MainPage as MainPageMobile,
   RecordPage as RecordPageMobile,
 } from './Device/Mobile';
-import { useGetListCategory } from 'api/services/Content';
+import { useGetListCategory } from 'api/services/Category';
 
 export const Home = () => {
-  const { pathname } = useLocation();
+  const { isOpenOutlay, isOpenProfit, isOpenRecordOutlay, isOpenRecordProfit } =
+    useCurrentPage();
   const { isMobile, isTabletAndDesktop } = useGetDevice();
 
   const { isLoading } = useGetListCategory();
@@ -25,7 +24,7 @@ export const Home = () => {
     return <h1>Загрузка</h1>;
   }
 
-  if (pathname === AppRoutes.OUTLAY || pathname === AppRoutes.PROFIT) {
+  if (isOpenOutlay() || isOpenProfit()) {
     return (
       <>
         {isTabletAndDesktop && <MainPageTabletAndDesktop />}
@@ -34,10 +33,7 @@ export const Home = () => {
     );
   }
 
-  if (
-    pathname === AppRoutes.RECORD_OUTLAY ||
-    pathname === AppRoutes.RECORD_PROFIT
-  ) {
+  if (isOpenRecordOutlay() || isOpenRecordProfit()) {
     return (
       <>
         {isTabletAndDesktop && <RecordPageTabletAndDesktop />}

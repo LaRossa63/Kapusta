@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { AppRoutes } from 'types/types';
 import {
   Alcohol,
   CommunalCommunication,
@@ -16,6 +14,7 @@ import {
   PayDay,
   AdditionallyPayDay,
 } from 'images/IconsOutlay';
+import { useCurrentPage } from 'hooks';
 
 interface ListOutlayAndProfit {
   id: number;
@@ -95,23 +94,20 @@ const ListIconProfit: ListOutlayAndProfit[] = [
 ];
 
 export const useGetRecordList = () => {
-  const { pathname } = useLocation();
+  const { isOpenRecordOutlay, isOpenRecordProfit } = useCurrentPage();
   const [currentList, setCurrentList] = useState<ListOutlayAndProfit[]>([]);
 
-  const isOutlay = pathname === AppRoutes.RECORD_OUTLAY;
-  const isShowProfit = pathname === AppRoutes.RECORD_PROFIT;
-
   useEffect(() => {
-    if (isOutlay) {
+    if (isOpenRecordOutlay()) {
       setCurrentList(ListIconsOutlay);
       return;
     }
 
-    if (isShowProfit) {
+    if (isOpenRecordProfit()) {
       setCurrentList(ListIconProfit);
       return;
     }
-  }, [isOutlay, isShowProfit, pathname]);
+  }, [isOpenRecordOutlay, isOpenRecordProfit]);
 
   const handleClickIcon = (id: number) => {
     console.log(id);

@@ -1,12 +1,12 @@
 import { useQuery } from 'react-query';
 
 import { KeyApi } from 'types/types';
-import { ContentService } from './Content.service';
+import { CategoryService } from './Category.service';
 
 export const useGetListCategory = () => {
   return useQuery({
     queryKey: KeyApi.CATEGORY_LIST,
-    queryFn: ContentService.getCategoryList,
+    queryFn: CategoryService.getCategoryList,
     staleTime: Infinity,
   });
 };

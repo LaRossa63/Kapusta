@@ -16,7 +16,7 @@ const Container = styled.div`
   bottom: 0;
 `;
 
-const ButtonStyled = styled(Button)<{ active?: boolean }>`
+const ButtonStyled = styled(Button)<{ active?: number }>`
   &.MuiButtonBase-root {
     width: calc(50% - 2px);
     height: 100%;
@@ -58,14 +58,14 @@ export const PanelTabs = () => {
     <Container>
       <ButtonStyled
         onClick={handleClickByOutlay}
-        active={currentActiveTabs === AppRoutes.OUTLAY}
+        active={Number(currentActiveTabs === AppRoutes.OUTLAY)}
       >
         Расход
       </ButtonStyled>
 
       <ButtonStyled
         onClick={handleClickByProfit}
-        active={currentActiveTabs === AppRoutes.PROFIT}
+        active={Number(currentActiveTabs === AppRoutes.PROFIT)}
       >
         Доход
       </ButtonStyled>

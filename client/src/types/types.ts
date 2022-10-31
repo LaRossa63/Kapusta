@@ -13,6 +13,13 @@ export enum KeyApi {
   CHECK_AUTH = 'auth',
 
   CATEGORY_LIST = 'category_list',
+
+  OUTLAY_LIST = 'outlay_list',
+  PROFIT_LIST = 'profit_list',
+}
+
+export enum KeyApp {
+  CONTROLS_VALUE = 'controls_value',
 }
 
 export enum LinksApi {
@@ -24,6 +31,9 @@ export enum LinksApi {
   USER_REFRESH_TOKEN = '/refresh',
 
   CATEGORY_LIST = '/category_list',
+
+  OUTLAY = '/outlay',
+  PROFIT = '/profit',
 }
 
 export interface SignInDTO {
@@ -69,4 +79,20 @@ export interface Category {
 export interface ResponseListCategoryApi {
   outlay: Category[];
   profit: Category[];
+}
+
+export interface OutlayAndProfitDTO {
+  id: string;
+  data: string;
+  description: string;
+  category: string;
+  amount: string;
+}
+
+export interface ResponseOutlayAndProfitApi {
+  id: string;
+  data: string;
+  description: string;
+  category: string;
+  amount: string;
 }

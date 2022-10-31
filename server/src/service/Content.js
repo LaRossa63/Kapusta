@@ -4,6 +4,7 @@ import {
   ProfitModel,
 } from '../models/index.js';
 import { ApiError } from '../exceptions/index.js';
+import { GetOutlayAndProfitDTO, AddOutlayAndProfitDTO } from '../dto/index.js';
 
 export const ContentService = {
   async getListCategory() {
@@ -13,25 +14,31 @@ export const ContentService = {
   },
 
   async addOutlay(user, data, description, category, amount) {
-    const response = await OutlayModel.create({
+    const dateOutlay = await OutlayModel.create({
       user,
       data,
       description,
       category,
       amount,
     });
+    const ProfitDTO = new AddOutlayAndProfitDTO(dateOutlay);
 
-    return response;
+    return ProfitDTO;
   },
 
   async getOutlay(user) {
-    const response = await OutlayModel.find({ user });
+    const dateOutlay = await OutlayModel.find({ user });
+    const OutlayDTO = new GetOutlayAndProfitDTO(dateOutlay);
 
-    return response;
+    return OutlayDTO.array;
   },
 
   async deleteOutlay(user, _id) {
     const dateOutlay = await OutlayModel.findByIdAndDelete({ user, _id });
+
+    console.log('Outlay');
+    console.log(dateOutlay);
+    console.log(user, _id);
 
     if (!dateOutlay) {
       throw ApiError.BadRequest('id не найден!');
@@ -41,7 +48,7 @@ export const ContentService = {
   },
 
   async addProfit(user, data, description, category, amount) {
-    const response = await ProfitModel.create({
+    const dateProfit = await ProfitModel.create({
       user,
       data,
       description,
@@ -49,17 +56,20 @@ export const ContentService = {
       amount,
     });
 
-    return response;
+    const ProfitDTO = new AddOutlayAndProfitDTO(dateProfit);
+
+    return ProfitDTO;
   },
 
   async getProfit(user) {
-    const response = await ProfitModel.find({ user });
+    const dateProfit = await ProfitModel.find({ user });
+    const ProfitDTO = new GetOutlayAndProfitDTO(dateProfit);
 
-    return response;
+    return ProfitDTO.array;
   },
 
   async deleteProfit(user, _id) {
-    const dateOutlay = await OutlayModel.findByIdAndDelete({ user, _id });
+    const dateOutlay = await ProfitModel.findByIdAndDelete({ user, _id });
 
     if (!dateOutlay) {
       throw ApiError.BadRequest('id не найден!');

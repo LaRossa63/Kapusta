@@ -1,78 +1,55 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+
 import { SelectChangeEvent } from '@mui/material';
-import {
-  AppRoutes,
-  KeyApi,
-  ResponseListCategoryApi,
-  Category,
-} from 'types/types';
+import { useGetListCategory } from './useGetListCategory';
 import { queryClient } from 'api';
+import { KeyApp, OutlayAndProfitDTO } from 'types/types';
+import { useCurrentPage } from './useCurrentPage';
+import { useAddOutlay, useAddProfit } from 'api/services/OutlayAndProfit';
+import { nanoid } from 'nanoid';
 
-// const listCategoriesOutlay = [
-//   'Транспорт',
-//   'Продукты',
-//   'Здоровье',
-//   'Алкоголь',
-//   'Развлечения',
-//   'Всё для дома',
-//   'Техника',
-//   'Коммуналка, связь',
-//   'Спорт, хобби',
-//   'Образование',
-//   'Прочее',
-// ];
-
-// const listCategoriesProfit = ['ЗП', 'Доп. ЗП'];
+interface ValueControls {
+  descriptionText: string;
+  selectedCategory: string;
+  amountText: string;
+}
 
 export const useHandleCreateListItem = () => {
+  const { pathname } = useLocation();
   const [descriptionText, setDescriptionText] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [amountText, setAmountText] = useState('');
-
-  const [listCategoriesOutlay, setListCategoriesOutlay] = useState<Category[]>(
-    []
-  );
-  const [listCategoriesProfit, setListCategoriesProfit] = useState<Category[]>(
-    []
-  );
-  const [currentListCategory, setCurrentListCategory] = useState<Category[]>(
-    []
-  );
-
-  const { pathname } = useLocation();
-
-  const isOutlay = pathname === AppRoutes.OUTLAY;
-  const isProfit = pathname === AppRoutes.PROFIT;
+  const { currentListCategory } = useGetListCategory();
+  const { isOpenOutlay, isOpenProfit } = useCurrentPage();
+  const { mutate: mutateAddOutlay } = useAddOutlay();
+  const { mutate: mutateAddProfit } = useAddProfit();
 
   useEffect(() => {
-    const listCategory = queryClient.getQueryData(
-      KeyApi.CATEGORY_LIST
-    ) as ResponseListCategoryApi;
+    const valueControls = queryClient.getQueryData([
+      KeyApp.CONTROLS_VALUE,
+      pathname,
+    ]) as ValueControls;
 
-    setListCategoriesOutlay(listCategory.outlay);
-    setListCategoriesProfit(listCategory.profit);
-  }, []);
-
-  useEffect(() => {
-    if (isOutlay) {
+    if (!valueControls) {
       handleClearInput();
-      setCurrentListCategory(listCategoriesOutlay);
       return;
     }
 
-    if (isProfit) {
-      handleClearInput();
-      setCurrentListCategory(listCategoriesProfit);
-      return;
-    }
-  }, [
-    pathname,
-    isOutlay,
-    isProfit,
-    listCategoriesOutlay,
-    listCategoriesProfit,
-  ]);
+    setDescriptionText(valueControls.descriptionText);
+    setSelectedCategory(valueControls.selectedCategory);
+    setAmountText(valueControls.amountText);
+  }, [pathname]);
+
+  useEffect(() => {
+    const valueControls: ValueControls = {
+      descriptionText,
+      selectedCategory,
+      amountText,
+    };
+
+    queryClient.setQueryData([KeyApp.CONTROLS_VALUE, pathname], valueControls);
+  }, [amountText, descriptionText, pathname, selectedCategory]);
 
   const handleChangeDescriptionText = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -89,16 +66,32 @@ export const useHandleCreateListItem = () => {
   };
 
   const handleCreate = () => {
-    console.log(`${descriptionText} | ${selectedCategory} |${amountText} `);
+    const body: OutlayAndProfitDTO = {
+      id: nanoid(),
+      data: '31.10.2022',
+      description: descriptionText,
+      category: selectedCategory,
+      amount: amountText,
+    };
 
     handleClearInput();
+
+    if (isOpenOutlay()) {
+      mutateAddOutlay(body);
+      return;
+    }
+
+    if (isOpenProfit()) {
+      mutateAddProfit(body);
+      return;
+    }
   };
 
-  const handleClearInput = () => {
+  function handleClearInput() {
     setDescriptionText('');
     setSelectedCategory('');
     setAmountText('');
-  };
+  }
 
   return {
     handleChangeDescriptionText,

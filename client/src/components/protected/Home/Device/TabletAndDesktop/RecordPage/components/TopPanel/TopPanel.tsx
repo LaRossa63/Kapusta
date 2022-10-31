@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import { Label, SliderPeriod } from 'components/Elements';
 import { ArrowBackIcon } from 'images';
-import { useLocation } from 'react-router-dom';
 import { useNavigateRecord } from 'hooks';
 
 const Container = styled.div`
