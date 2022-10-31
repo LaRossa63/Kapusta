@@ -26,3 +26,6 @@ ContentRouter.delete(
   AuthMiddlewares,
   ContentController.deleteProfit
 );
+
+ContentRouter.post('/balance', AuthMiddlewares);
+ContentRouter.get('/balance', AuthMiddlewares);
