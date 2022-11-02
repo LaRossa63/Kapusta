@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Button, Label, SecondaryText } from 'components/Elements';
 import { GraphIcon } from 'images';
-import { useNavigateRecord } from 'hooks';
+import { useBalance, useNavigateRecord } from 'hooks';
 
 const Container = styled.div`
   height: 44px;
@@ -83,16 +83,22 @@ const ButtonStyled = styled(Button)`
 
 export const TopPanel = () => {
   const { handleClickRecord } = useNavigateRecord();
+  const { handleChangeBalance, handleClickButton, balance } = useBalance();
 
   return (
     <Container>
       <ContainerController>
         <Label>
           <SecondaryTextStyled>Баланс:</SecondaryTextStyled>
-          <Input type="number" placeholder="00.00 EU" />
+          <Input
+            type="number"
+            placeholder={`${balance} ₽`}
+            onChange={handleChangeBalance}
+            value={balance}
+          />
         </Label>
 
-        <ButtonStyled>Подтвердить</ButtonStyled>
+        <ButtonStyled onClick={handleClickButton}>Подтвердить</ButtonStyled>
       </ContainerController>
 
       <Label onClick={handleClickRecord}>

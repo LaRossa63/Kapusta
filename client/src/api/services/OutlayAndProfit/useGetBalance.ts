@@ -1,26 +1,10 @@
-import { useMutation } from 'react-query';
+import { useQuery } from 'react-query';
+import { KeyApi } from 'types/types';
 import { OutlayAndProfit } from './OutlayAndProfit.service';
 
 export const useGetBalance = () => {
-  return useMutation({
-    //  onMutate: (id) => {
-
-    //    const oldValue = queryClient.getQueryData(
-    //      KeyApi.PROFIT_LIST
-    //    ) as ResponseOutlayAndProfitApi[];
-
-    //    queryClient.setQueryData(
-    //      KeyApi.PROFIT_LIST,
-    //      oldValue.filter((element) => element.id !== id)
-    //    );
-
-    //    return oldValue;
-    //  },
-
-    //  onError: (error, value, oldValue) => {
-    //    queryClient.setQueryData(KeyApi.PROFIT_LIST, oldValue);
-    //  },
-
-    mutationFn: OutlayAndProfit.getBalance,
+  return useQuery({
+    queryKey: KeyApi.BALANCE,
+    queryFn: OutlayAndProfit.getBalance,
   });
 };

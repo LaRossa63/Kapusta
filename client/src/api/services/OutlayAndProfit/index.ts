@@ -6,3 +6,4 @@ export * from './useDeleteProfit';
 export * from './useGetOutlay';
 export * from './useGetProfit';
 export * from './useGetBalance';
+export * from './useAddBalance';

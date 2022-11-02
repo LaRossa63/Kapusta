@@ -1,4 +1,5 @@
 import { Button, Calendar } from 'components/Elements';
+import { useBalance } from 'hooks';
 import React from 'react';
 import styled from 'styled-components';
 import { ContainerRecords, PanelTabs } from '../../../Elements';
@@ -88,6 +89,8 @@ const ContainerCalender = styled.div`
 `;
 
 export const OutlayAndProfit = () => {
+  const { handleChangeBalance, handleClickButton, balance } = useBalance();
+
   return (
     <>
       <Container>
@@ -96,8 +99,13 @@ export const OutlayAndProfit = () => {
         <BalanceContainer>
           <SecondaryText>Баланс:</SecondaryText>
           <ContainerControls>
-            <Input type="number" placeholder="00.00 EU" />
-            <ButtonStyled>Подтвердить</ButtonStyled>
+            <Input
+              type="number"
+              placeholder={`${balance} ₽`}
+              onChange={handleChangeBalance}
+              value={balance}
+            />
+            <ButtonStyled onClick={handleClickButton}>Подтвердить</ButtonStyled>
           </ContainerControls>
         </BalanceContainer>
 

@@ -1,7 +1,9 @@
 import { Axios } from 'api';
 import {
+  BalanceDTO,
   LinksApi,
   OutlayAndProfitDTO,
+  ResponseBalanceApi,
   ResponseOutlayAndProfitApi,
 } from 'types/types';
 
@@ -30,7 +32,11 @@ export const OutlayAndProfit = {
     return Axios.get(LinksApi.PROFIT);
   },
 
-  async getBalance() {
-    return;
+  async addBalance(body: BalanceDTO): Promise<ResponseBalanceApi> {
+    return Axios.post(LinksApi.BALANCE, body);
+  },
+
+  async getBalance(): Promise<ResponseBalanceApi> {
+    return Axios.get(LinksApi.BALANCE);
   },
 };

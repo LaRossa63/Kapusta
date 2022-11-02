@@ -3,10 +3,14 @@ import { BalanceDTO } from '../dto/index.js';
 
 export const BalanceService = {
   async getBalance(user) {
-    let dateBalance = await BalanceModel.findOne({ user });
+    const dateBalance = await BalanceModel.findOne({ user });
+
+    console.log(dateBalance);
 
     if (!dateBalance) {
-      dateBalance = await BalanceModel.create({ user, balance: '0' });
+      const currentBalance = await BalanceModel.create({ user, balance: '0' });
+
+      return new BalanceDTO(currentBalance);
     }
 
     const balanceDTO = new BalanceDTO(dateBalance);
@@ -15,14 +19,16 @@ export const BalanceService = {
   },
 
   async addBalance(user, balance) {
-    let dateBalance = await BalanceModel.findOne({ user });
+    const dateBalance = await BalanceModel.findOne({ user });
 
     if (!dateBalance) {
-      dateBalance = await BalanceModel.create({ user, balance });
+      const currentBalance = await BalanceModel.create({ user, balance });
+      return new BalanceDTO(currentBalance);
     }
 
-    const balanceDTO = new BalanceDTO(dateBalance);
+    dateBalance.balance = balance;
+    await dateBalance.save();
 
-    return balanceDTO;
+    return new BalanceDTO(dateBalance);
   },
 };

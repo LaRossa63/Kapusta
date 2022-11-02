@@ -16,6 +16,8 @@ export enum KeyApi {
 
   OUTLAY_LIST = 'outlay_list',
   PROFIT_LIST = 'profit_list',
+
+  BALANCE = 'balance',
 }
 
 export enum KeyApp {
@@ -34,6 +36,8 @@ export enum LinksApi {
 
   OUTLAY = '/outlay',
   PROFIT = '/profit',
+
+  BALANCE = '/balance',
 }
 
 export interface SignInDTO {
@@ -95,4 +99,12 @@ export interface ResponseOutlayAndProfitApi {
   description: string;
   category: string;
   amount: string;
+}
+
+export interface BalanceDTO {
+  balance: string;
+}
+
+export interface ResponseBalanceApi {
+  balance: string;
 }

@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { useBalance } from 'hooks';
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -39,10 +41,12 @@ const BalanceText = styled.span`
 `;
 
 export const ContainerBalance = () => {
+  const { balance } = useBalance();
+
   return (
     <Container>
       <SecondaryText>Баланс:</SecondaryText>
-      <BalanceText>55 000.00 UAH</BalanceText>
+      <BalanceText>{`${balance} ₽`}</BalanceText>
     </Container>
   );
 };

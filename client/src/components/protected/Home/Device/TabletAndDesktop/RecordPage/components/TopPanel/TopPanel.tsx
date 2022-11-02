@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Label, SliderPeriod } from 'components/Elements';
 import { ArrowBackIcon } from 'images';
-import { useNavigateRecord } from 'hooks';
+import { useBalance, useNavigateRecord } from 'hooks';
 
 const Container = styled.div`
   height: 44px;
@@ -49,6 +49,7 @@ const CountBalance = styled.span`
 
 export const TopPanel = () => {
   const { handleClickGoBack } = useNavigateRecord();
+  const { balance } = useBalance();
 
   return (
     <Container>
@@ -60,7 +61,7 @@ export const TopPanel = () => {
       <ContainerBalance>
         <SecondaryText>Баланс:</SecondaryText>
 
-        <CountBalance>55 000.00 UAH</CountBalance>
+        <CountBalance>{`${balance} ₽`}</CountBalance>
       </ContainerBalance>
 
       <SliderPeriod />

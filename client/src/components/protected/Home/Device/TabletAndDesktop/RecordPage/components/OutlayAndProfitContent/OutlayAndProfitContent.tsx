@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import { Button, SliderOutlayAndProfit } from 'components/Elements';
@@ -67,7 +67,7 @@ export const OutlayAndProfitSlider = () => {
             <TextDescriptionItem>5 000.00</TextDescriptionItem>
 
             <ButtonStyled onClick={() => handleClickIcon(element.id)}>
-              {element.icon}
+              <element.icon color="red" />
             </ButtonStyled>
 
             <TextDescriptionItem>{element.description}</TextDescriptionItem>

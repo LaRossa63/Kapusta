@@ -6,3 +6,4 @@ export * from './useGetRecordList';
 export * from './useListOutlayAndProfit';
 export * from './useCurrentPage';
 export * from './useGetListCategory';
+export * from './useBalance';
