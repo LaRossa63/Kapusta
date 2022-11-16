@@ -1,27 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { SelectChangeEvent } from '@mui/material';
 import { useGetListCategory } from './useGetListCategory';
 import { queryClient } from 'api';
-import { KeyApp, OutlayAndProfitDTO } from 'types/types';
+import { Category, KeyApp, OutlayAndProfitDTO } from 'types/types';
 import { useCurrentPage } from './useCurrentPage';
 import { useAddOutlay, useAddProfit } from 'api/services/OutlayAndProfit';
 import { nanoid } from 'nanoid';
 
 interface ValueControls {
   descriptionText: string;
-  selectedCategory: string;
+  selectedCategory: Category;
   amountText: string;
 }
 
 export const useHandleCreateListItem = () => {
   const { pathname } = useLocation();
   const [descriptionText, setDescriptionText] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<Category>({
+    id: '',
+    text: '',
+  });
   const [amountText, setAmountText] = useState('');
   const { currentListCategory } = useGetListCategory();
-  const { isOpenOutlay, isOpenProfit } = useCurrentPage();
+  const {
+    isOpenOutlay,
+    isOpenProfit,
+    isOpenMobileCreateOutlay,
+    isOpenMobileCreateProfit,
+  } = useCurrentPage();
   const { mutate: mutateAddOutlay } = useAddOutlay();
   const { mutate: mutateAddProfit } = useAddProfit();
 
@@ -57,8 +64,8 @@ export const useHandleCreateListItem = () => {
     setDescriptionText(event.target.value);
   };
 
-  const handleChangeSelectedCategory = (event: SelectChangeEvent<any>) => {
-    setSelectedCategory(event.target.value);
+  const handleChangeSelectedCategory = (value: Category) => {
+    setSelectedCategory(value);
   };
 
   const handleChangeAmount = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,18 +77,19 @@ export const useHandleCreateListItem = () => {
       id: nanoid(),
       data: '31.10.2022',
       description: descriptionText,
-      category: selectedCategory,
+      categoryId: selectedCategory.id,
+      categoryText: selectedCategory.text,
       amount: amountText,
     };
 
     handleClearInput();
 
-    if (isOpenOutlay()) {
+    if (isOpenOutlay() || isOpenMobileCreateOutlay()) {
       mutateAddOutlay(body);
       return;
     }
 
-    if (isOpenProfit()) {
+    if (isOpenProfit() || isOpenMobileCreateProfit()) {
       mutateAddProfit(body);
       return;
     }
@@ -89,7 +97,7 @@ export const useHandleCreateListItem = () => {
 
   function handleClearInput() {
     setDescriptionText('');
-    setSelectedCategory('');
+    setSelectedCategory({ id: '', text: '' });
     setAmountText('');
   }
 

@@ -124,7 +124,7 @@ export const TableList = () => {
                 <TableRow key={list.id}>
                   <TableCellStyled>{list.data}</TableCellStyled>
                   <TableCellStyled>{list.description}</TableCellStyled>
-                  <TableCellStyled>{list.category}</TableCellStyled>
+                  <TableCellStyled>{list.categoryText}</TableCellStyled>
                   <TableCellLastStyled mode={pathname}>
                     {list.amount}
                     {list.amount && (

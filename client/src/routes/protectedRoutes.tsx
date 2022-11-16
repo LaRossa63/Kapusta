@@ -11,6 +11,8 @@ export const ProtectedRoutes = [
       { path: AppRoutes.PROFIT, element: <Home /> },
       { path: AppRoutes.RECORD_OUTLAY, element: <Home /> },
       { path: AppRoutes.RECORD_PROFIT, element: <Home /> },
+      { path: AppRoutes.MOBILE_CREATE_OUTLAY, element: <Home /> },
+      { path: AppRoutes.MOBILE_CREATE_PROFIT, element: <Home /> },
       {
         path: '*',
         element: <Navigate to={AppRoutes.OUTLAY} />,

@@ -4,7 +4,12 @@ import { useCurrentPage } from './useCurrentPage';
 import { useEffect, useState } from 'react';
 
 export const useGetListCategory = () => {
-  const { isOpenOutlay, isOpenProfit } = useCurrentPage();
+  const {
+    isOpenOutlay,
+    isOpenProfit,
+    isOpenMobileCreateOutlay,
+    isOpenMobileCreateProfit,
+  } = useCurrentPage();
 
   const [listCategoriesOutlay, setListCategoriesOutlay] = useState<Category[]>(
     []
@@ -26,16 +31,23 @@ export const useGetListCategory = () => {
   }, []);
 
   useEffect(() => {
-    if (isOpenOutlay()) {
+    if (isOpenOutlay() || isOpenMobileCreateOutlay()) {
       setCurrentListCategory(listCategoriesOutlay);
       return;
     }
 
-    if (isOpenProfit()) {
+    if (isOpenProfit() || isOpenMobileCreateProfit()) {
       setCurrentListCategory(listCategoriesProfit);
       return;
     }
-  }, [isOpenOutlay, isOpenProfit, listCategoriesOutlay, listCategoriesProfit]);
+  }, [
+    isOpenMobileCreateOutlay,
+    isOpenMobileCreateProfit,
+    isOpenOutlay,
+    isOpenProfit,
+    listCategoriesOutlay,
+    listCategoriesProfit,
+  ]);
 
   return { currentListCategory };
 };

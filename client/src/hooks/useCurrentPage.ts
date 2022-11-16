@@ -20,5 +20,20 @@ export const useCurrentPage = () => {
     return pathname === AppRoutes.RECORD_PROFIT;
   };
 
-  return { isOpenOutlay, isOpenProfit, isOpenRecordOutlay, isOpenRecordProfit };
+  const isOpenMobileCreateOutlay = () => {
+    return pathname === AppRoutes.MOBILE_CREATE_OUTLAY;
+  };
+
+  const isOpenMobileCreateProfit = () => {
+    return pathname === AppRoutes.MOBILE_CREATE_PROFIT;
+  };
+
+  return {
+    isOpenOutlay,
+    isOpenProfit,
+    isOpenRecordOutlay,
+    isOpenRecordProfit,
+    isOpenMobileCreateProfit,
+    isOpenMobileCreateOutlay,
+  };
 };

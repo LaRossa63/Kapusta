@@ -56,7 +56,7 @@ const BorderTest = styled.li`
 `;
 
 export const OutlayAndProfitContent = () => {
-  const { handleClickIcon, currentList } = useGetRecordList();
+  const { handleClickIcon, currentList, selectedCategory } = useGetRecordList();
 
   return (
     <Container>
@@ -64,19 +64,21 @@ export const OutlayAndProfitContent = () => {
 
       <ListContent>
         {currentList.map((element, index) => (
-          <>
-            <ListItem key={element.id}>
+          <div key={element.id}>
+            <ListItem>
               <TextDescriptionItem>5 000.00</TextDescriptionItem>
 
               <ButtonStyled onClick={() => handleClickIcon(element.id)}>
-                {element.icon}
+                <element.icon
+                  color={element.id === selectedCategory ? '#FF751D' : null}
+                />
               </ButtonStyled>
               <TextDescriptionItem>{element.description}</TextDescriptionItem>
             </ListItem>
 
             {index > 0 && (index + 1) % 3 === 0 && <BorderTest />}
             {index === currentList.length - 1 && <BorderTest />}
-          </>
+          </div>
         ))}
       </ListContent>
     </Container>

@@ -55,7 +55,7 @@ const ButtonStyled = styled(Button)`
 `;
 
 export const OutlayAndProfitSlider = () => {
-  const { handleClickIcon, currentList } = useGetRecordList();
+  const { handleClickIcon, currentList, selectedCategory } = useGetRecordList();
 
   return (
     <Container>
@@ -64,10 +64,10 @@ export const OutlayAndProfitSlider = () => {
       <ListContent>
         {currentList.map((element) => (
           <ListItem key={element.id}>
-            <TextDescriptionItem>5 000.00</TextDescriptionItem>
-
             <ButtonStyled onClick={() => handleClickIcon(element.id)}>
-              <element.icon color="red" />
+              <element.icon
+                color={element.id === selectedCategory ? '#FF751D' : null}
+              />
             </ButtonStyled>
 
             <TextDescriptionItem>{element.description}</TextDescriptionItem>

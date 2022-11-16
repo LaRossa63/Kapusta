@@ -7,3 +7,5 @@ export * from './useListOutlayAndProfit';
 export * from './useCurrentPage';
 export * from './useGetListCategory';
 export * from './useBalance';
+export * from './useOutlayAndProfitTotal';
+export * from './useNavigateMobile';

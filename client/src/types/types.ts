@@ -4,6 +4,8 @@ export enum AppRoutes {
 
   RECORD_OUTLAY = '/record/outlay',
   RECORD_PROFIT = '/record/profit',
+  MOBILE_CREATE_OUTLAY = '/create_outlay',
+  MOBILE_CREATE_PROFIT = '/create_profit',
 
   SIGNUP = 'signup',
   SIGNIN = 'signin',
@@ -38,6 +40,9 @@ export enum LinksApi {
   PROFIT = '/profit',
 
   BALANCE = '/balance',
+
+  OUTLAY_BY_ID = '/outlay_by_id',
+  PROFIT_BY_ID = '/profit_by_id',
 }
 
 export interface SignInDTO {
@@ -76,7 +81,7 @@ export interface AuthResponseApi {
 }
 
 export interface Category {
-  _id: string;
+  id: string;
   text: string;
 }
 
@@ -89,7 +94,8 @@ export interface OutlayAndProfitDTO {
   id: string;
   data: string;
   description: string;
-  category: string;
+  categoryId: string;
+  categoryText: string;
   amount: string;
 }
 
@@ -97,7 +103,8 @@ export interface ResponseOutlayAndProfitApi {
   id: string;
   data: string;
   description: string;
-  category: string;
+  categoryId: string;
+  categoryText: string;
   amount: string;
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Button, CategoryList, Label } from 'components/Elements';
-import { useHandleCreateListItem } from 'hooks';
+import { useHandleCreateListItem, useNavigateRecord } from 'hooks';
 import { ArrowBackIcon, CalculatorIcon } from 'images';
 
 const Container = styled.div`
@@ -132,14 +132,20 @@ export const ChoosingCategory = () => {
     currentListCategory,
   } = useHandleCreateListItem();
 
+  const { handleClickGoBack } = useNavigateRecord();
+
   return (
     <Container>
       <ArrowStyled>
-        <ArrowBackIcon />
+        <ArrowBackIcon onClick={handleClickGoBack} />
       </ArrowStyled>
 
       <ContainerForm>
-        <DescriptionInput placeholder="Описание товара" />
+        <DescriptionInput
+          placeholder="Описание товара"
+          onChange={handleChangeDescriptionText}
+          value={descriptionText}
+        />
 
         <CategoryList
           handleChangeSelectedCategory={handleChangeSelectedCategory}
@@ -162,8 +168,8 @@ export const ChoosingCategory = () => {
       </ContainerAmount>
 
       <ContainerButton>
-        <ButtonStyled>ввод</ButtonStyled>
-        <ButtonStyled>очистить</ButtonStyled>
+        <ButtonStyled onClick={handleCreate}>ввод</ButtonStyled>
+        <ButtonStyled onClick={handleClearInput}>очистить</ButtonStyled>
       </ContainerButton>
     </Container>
   );

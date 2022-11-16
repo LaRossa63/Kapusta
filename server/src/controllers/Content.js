@@ -3,25 +3,17 @@ dotenv.config();
 import { ContentService } from '../service/index.js';
 
 export const ContentController = {
-  async getListCategory(req, res, next) {
-    try {
-      const response = await ContentService.getListCategory();
-      res.json(response);
-    } catch (error) {
-      next(error);
-    }
-  },
-
   async addOutlay(req, res, next) {
     try {
-      const { data, description, category, amount } = req.body;
+      const { data, description, categoryId, categoryText, amount } = req.body;
       const { id: user } = req.user;
 
       const response = await ContentService.addOutlay(
         user,
         data,
         description,
-        category,
+        categoryId,
+        categoryText,
         amount
       );
 
@@ -58,14 +50,15 @@ export const ContentController = {
 
   async addProfit(req, res, next) {
     try {
-      const { data, description, category, amount } = req.body;
+      const { data, description, categoryId, categoryText, amount } = req.body;
       const { id: user } = req.user;
 
       const response = await ContentService.addProfit(
         user,
         data,
         description,
-        category,
+        categoryId,
+        categoryText,
         amount
       );
 

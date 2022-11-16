@@ -5,7 +5,8 @@ export class GetOutlayAndProfitDTO {
     this.array = model.map((element) => {
       return {
         id: element._id,
-        category: element.category,
+        categoryId: element.categoryId,
+        categoryText: element.categoryText,
         data: element.data,
         description: element.description,
         amount: element.amount,
@@ -16,14 +17,16 @@ export class GetOutlayAndProfitDTO {
 
 export class AddOutlayAndProfitDTO {
   id;
-  category;
+  categoryId;
+  categoryText;
   data;
   description;
   amount;
 
   constructor(model) {
     this.id = model._id;
-    this.category = model.category;
+    this.categoryId = model.categoryId;
+    this.categoryText = model.categoryText;
     this.data = model.data;
     this.description = model.description;
     this.amount = model.amount;

@@ -12,10 +12,17 @@ import {
   RecordPage as RecordPageMobile,
 } from './Device/Mobile';
 import { useGetListCategory } from 'api/services/Category';
+import { ChoosingCategory } from './Device/Mobile/MainPage/components';
 
 export const Home = () => {
-  const { isOpenOutlay, isOpenProfit, isOpenRecordOutlay, isOpenRecordProfit } =
-    useCurrentPage();
+  const {
+    isOpenOutlay,
+    isOpenProfit,
+    isOpenRecordOutlay,
+    isOpenRecordProfit,
+    isOpenMobileCreateOutlay,
+    isOpenMobileCreateProfit,
+  } = useCurrentPage();
   const { isMobile, isTabletAndDesktop } = useGetDevice();
 
   const { isLoading } = useGetListCategory();
@@ -40,6 +47,10 @@ export const Home = () => {
         {isMobile && <RecordPageMobile />}
       </>
     );
+  }
+
+  if (isOpenMobileCreateOutlay() || isOpenMobileCreateProfit()) {
+    return <>{isMobile && <ChoosingCategory />}</>;
   }
 
   return <></>;

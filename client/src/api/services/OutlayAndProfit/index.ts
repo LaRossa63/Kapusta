@@ -7,3 +7,5 @@ export * from './useGetOutlay';
 export * from './useGetProfit';
 export * from './useGetBalance';
 export * from './useAddBalance';
+export * from './useGetOutlayById';
+export * from './useGetProfitById';

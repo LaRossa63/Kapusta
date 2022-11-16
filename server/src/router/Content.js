@@ -5,12 +5,6 @@ import { AuthMiddlewares } from '../middlewares/index.js';
 
 export const ContentRouter = new Router();
 
-ContentRouter.get(
-  '/category_list',
-  AuthMiddlewares,
-  ContentController.getListCategory
-);
-
 ContentRouter.post('/outlay', AuthMiddlewares, ContentController.addOutlay);
 ContentRouter.get('/outlay', AuthMiddlewares, ContentController.getOutlay);
 ContentRouter.delete(
@@ -26,6 +20,3 @@ ContentRouter.delete(
   AuthMiddlewares,
   ContentController.deleteProfit
 );
-
-ContentRouter.post('/balance', AuthMiddlewares);
-ContentRouter.get('/balance', AuthMiddlewares);

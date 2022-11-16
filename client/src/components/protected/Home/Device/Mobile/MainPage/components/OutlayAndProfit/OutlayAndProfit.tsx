@@ -1,8 +1,9 @@
 import { Button, Calendar } from 'components/Elements';
-import { useBalance } from 'hooks';
+import { useBalance, useNavigateRecord } from 'hooks';
 import React from 'react';
 import styled from 'styled-components';
 import { ContainerRecords, PanelTabs } from '../../../Elements';
+import { Table } from '../Table';
 
 const Container = styled.div`
   width: 100%;
@@ -20,11 +21,13 @@ const BalanceContainer = styled.div`
   margin-top: 43px;
 `;
 
-const SecondaryText = styled.p`
+const SecondaryText = styled.p<{ margin?: string }>`
   font-size: ${(props) => props.theme.font.size.normal};
   text-align: center;
   font-weight: 500;
   letter-spacing: 0.02em;
+
+  margin: ${(props) => props.margin || '0'};
 
   color: rgba(82, 85, 95, 0.7);
 `;
@@ -90,6 +93,7 @@ const ContainerCalender = styled.div`
 
 export const OutlayAndProfit = () => {
   const { handleChangeBalance, handleClickButton, balance } = useBalance();
+  const { handleClickMobileCreate } = useNavigateRecord();
 
   return (
     <>
@@ -112,6 +116,12 @@ export const OutlayAndProfit = () => {
         <ContainerCalender>
           <Calendar />
         </ContainerCalender>
+
+        <SecondaryText margin="40px 0 0 0" onClick={handleClickMobileCreate}>
+          Добавить
+        </SecondaryText>
+
+        <Table />
       </Container>
 
       <PanelTabs />

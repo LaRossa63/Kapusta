@@ -1,19 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 
-import { ChoosingCategory, OutlayAndProfit } from './components';
-
-const Container = styled.div``;
+import { OutlayAndProfit } from './components';
 
 export const MainPage = () => {
-  return (
-    <>
-      <OutlayAndProfit />
-    </>
-  );
+  return <OutlayAndProfit />;
 };
-
-// пополнение баланса
-
-// Выбор категории
-// <ChoosingCategory />;

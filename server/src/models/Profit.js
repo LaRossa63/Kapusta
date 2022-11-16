@@ -5,7 +5,8 @@ const ProfitSchema = new Schema({
 
   data: { type: String, required: true },
   description: { type: String, required: true },
-  category: { type: String, required: true },
+  categoryId: { type: String, required: true },
+  categoryText: { type: String, required: true },
   amount: { type: String, required: true },
 });
 

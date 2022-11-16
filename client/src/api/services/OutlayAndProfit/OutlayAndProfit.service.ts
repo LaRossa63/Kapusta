@@ -39,4 +39,12 @@ export const OutlayAndProfit = {
   async getBalance(): Promise<ResponseBalanceApi> {
     return Axios.get(LinksApi.BALANCE);
   },
+
+  async getOutlayById(category: string): Promise<ResponseOutlayAndProfitApi[]> {
+    return Axios.get(LinksApi.OUTLAY_BY_ID, { params: { category } });
+  },
+
+  async getProfitById(category: string): Promise<ResponseOutlayAndProfitApi[]> {
+    return Axios.get(LinksApi.PROFIT_BY_ID, { params: { category } });
+  },
 };

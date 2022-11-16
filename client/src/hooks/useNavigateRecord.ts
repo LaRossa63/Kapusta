@@ -9,6 +9,10 @@ export const useNavigateRecord = () => {
     navigate(`/record${pathname}`, { state: pathname });
   };
 
+  const handleClickMobileCreate = () => {
+    navigate(`/create_${pathname.slice(1, 10)}`, { state: pathname });
+  };
+
   const handleClickGoBack = () => {
     if (state === null) {
       navigate(AppRoutes.OUTLAY);
@@ -18,5 +22,5 @@ export const useNavigateRecord = () => {
     navigate(state);
   };
 
-  return { handleClickRecord, handleClickGoBack };
+  return { handleClickRecord, handleClickMobileCreate, handleClickGoBack };
 };

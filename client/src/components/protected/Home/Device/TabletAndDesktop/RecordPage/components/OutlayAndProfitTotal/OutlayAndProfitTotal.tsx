@@ -1,3 +1,4 @@
+import { useOutlayAndProfitTotal } from 'hooks';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -60,16 +61,18 @@ const ColorText = styled.span<{ color: string }>`
 `;
 
 export const OutlayAndProfitTotal = () => {
+  const { totalOutlay, totalProfit } = useOutlayAndProfitTotal();
+
   return (
     <Container>
       <ContainerOutlay>
         <SecondaryText>Расходы:</SecondaryText>
-        <ColorText color="#E53935">- 18 000.00 грн.</ColorText>
+        <ColorText color="#E53935">- {totalOutlay} ₽</ColorText>
       </ContainerOutlay>
 
       <ContainerProfit>
         <SecondaryText>Доходы:</SecondaryText>
-        <ColorText color="#407946">+ 45 000.00 грн.</ColorText>
+        <ColorText color="#407946">+ {totalProfit} ₽</ColorText>
       </ContainerProfit>
     </Container>
   );
